@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expenso – Lisha Thomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --black: #111111;
+      --grey-text: #555555;
+      --light-bg: #f7f7f7;
+      --orange: #FF6D3F;
+      --font-heading: 'ClashDisplay-Variable', 'Clash Display', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --side: 200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px var(--side);
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-name {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--black);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* BACK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey-text);
+      text-decoration: none;
+      padding: 48px var(--side) 0;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+    .back-link:hover { color: var(--black); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* HERO */
+    .project-hero {
+      padding: 36px var(--side) 56px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+    .project-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .project-hero .meta {
+      font-size: 14px;
+      font-weight: 400;
+      color: #999;
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+    }
+    .project-hero .overview {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    /* COVER */
+    .cover-image {
+      padding: 0 var(--side) 72px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.25s forwards;
+    }
+    .cover-image img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      background: #f0ede8;
+    }
+
+    /* DETAILS STRIP */
+    .details-strip {
+      padding: 0 var(--side) 72px;
+      display: flex;
+      gap: 80px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+    .detail-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+    .detail-item span {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    /* TABLE OF CONTENTS */
+    .toc {
+      padding: 56px var(--side);
+      background: var(--light-bg);
+      margin-bottom: 80px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.35s forwards;
+    }
+    .toc-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 32px;
+    }
+    .toc-phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .toc-phase h3 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .toc-phase ul { list-style: none; }
+    .toc-phase ul li {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey-text);
+      padding: 5px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .toc-phase ul li:last-child { border-bottom: none; }
+
+    /* SECTION RULE */
+    .section-rule {
+      border: none;
+      border-top: 1px solid #ebebeb;
+      margin: 0 var(--side) 72px;
+    }
+
+    /* CASE SECTION */
+    .case-section { padding: 0 var(--side) 72px; }
+    .phase-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .case-section h2 {
+      font-family: var(--font-heading);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    .case-section p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.85;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .case-section p:last-child { margin-bottom: 0; }
+
+    /* QUOTE CARDS */
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .quote-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 28px 32px;
+      border-left: 3px solid var(--orange);
+    }
+    .quote-card p {
+      font-size: 15px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.7;
+      font-style: italic;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* PAIN POINTS GRID */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .pain-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 28px 32px;
+    }
+    .pain-card .num {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 600;
+      color: #e8e8e8;
+      margin-bottom: 10px;
+    }
+    .pain-card h4 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .pain-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* COMPETITOR TABLE */
+    .competitor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: 14px;
+    }
+    .competitor-table th {
+      text-align: left;
+      font-weight: 500;
+      font-size: 13px;
+      color: #999;
+      padding: 12px 16px;
+      border-bottom: 2px solid #ebebeb;
+      letter-spacing: 0.03em;
+    }
+    .competitor-table th:first-child { padding-left: 0; }
+    .competitor-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      color: var(--grey-text);
+      font-weight: 300;
+      vertical-align: top;
+    }
+    .competitor-table td:first-child {
+      padding-left: 0;
+      font-weight: 500;
+      color: var(--black);
+    }
+    .competitor-table tr:last-child td { border-bottom: none; }
+    .tag-bad { color: #c0392b; }
+    .tag-good { color: #27ae60; }
+
+    /* WHAT APP SOLVES */
+    .solves-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .solve-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 32px 28px;
+    }
+    .solve-card .icon {
+      width: 40px;
+      height: 40px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .solve-card .icon svg {
+      width: 20px; height: 20px;
+      stroke: white; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .solve-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .solve-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* USER FLOWS */
+    .flow-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .flow-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 28px;
+      background: var(--light-bg);
+      border-radius: 10px;
+    }
+    .flow-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+      color: #e0e0e0;
+      line-height: 1;
+      min-width: 36px;
+    }
+    .flow-content h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .flow-content p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* DESIGN SYSTEM COLOURS */
+    .colour-swatches {
+      display: flex;
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .swatch-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    .swatch-info label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    .swatch-info span {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    /* SCREEN GALLERY */
+    .screen-gallery { padding: 0 var(--side) 72px; }
+    .screen-gallery h2 {
+      font-family: var(--font-heading);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .screen-gallery .phase-label { margin-bottom: 10px; }
+    .screen-gallery p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.85;
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+    .screens-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .screens-grid-3 img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      background: #f0f0f0;
+    }
+
+    /* TAKEAWAYS */
+    .takeaways-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .takeaway-card {
+      padding: 32px;
+      border: 1px solid #ebebeb;
+      border-radius: 10px;
+    }
+    .takeaway-card h4 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .takeaway-card p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.8;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px var(--side);
+      border-top: 1px solid #ebebeb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span { font-size: 13px; color: #bbb; font-weight: 300; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      :root { --side: 28px; }
+      .toc-phases { grid-template-columns: 1fr 1fr; }
+      .quote-grid, .pain-grid, .takeaways-grid { grid-template-columns: 1fr; }
+      .solves-grid { grid-template-columns: 1fr; }
+      .screens-grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .details-strip { flex-wrap: wrap; gap: 32px; }
+      .colour-swatches { flex-wrap: wrap; }
+      footer { flex-direction: column; gap: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-name">Lisha Thomas</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- BACK -->
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to work
+  </a>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <h1>Expenso</h1>
+    <div class="meta">Mobile App &nbsp;·&nbsp; UX / UI Design</div>
+    <p class="overview">Expenso is a personal finance app designed to make tracking daily expenses, managing budgets, and understanding spending habits simple, visual, and even a little motivating.</p>
+  </div>
+
+  <!-- COVER -->
+  <div class="cover-image">
+    <img src="expense app images/1.png" alt="Expenso app overview" />
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details-strip">
+    <div class="detail-item"><label>Role</label><span>UX / UI Designer</span></div>
+    <div class="detail-item"><label>Platform</label><span>iOS Mobile App</span></div>
+    <div class="detail-item"><label>Type</label><span>End-to-end App</span></div>
+    <div class="detail-item"><label>Tools</label><span>Figma</span></div>
+    <div class="detail-item"><label>Industry</label><span>Expense Tracking</span></div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-label">Case Study Overview</div>
+    <div class="toc-phases">
+      <div class="toc-phase">
+        <h3>Discover</h3>
+        <ul>
+          <li>Why an expense app?</li>
+          <li>Users &amp; existing apps</li>
+          <li>Pain points</li>
+          <li>Problem statement</li>
+          <li>Competitor analysis</li>
+          <li>What Expenso solves</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Define</h3>
+        <ul>
+          <li>Sitemap &amp; user flows</li>
+          <li>Inspiration to prototypes</li>
+          <li>The design system</li>
+          <li>Accessibility standards</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Develop</h3>
+        <ul>
+          <li>High fidelity prototype</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Deliver</h3>
+        <ul>
+          <li>My learnings</li>
+          <li>What next</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DISCOVER ── -->
+
+  <div class="case-section">
+    <div class="phase-label">Discover</div>
+    <h2>Why an expense app?</h2>
+    <p>Managing money can be stressful, especially when small expenses slip through the cracks. I wanted to design an app that makes tracking daily spending, budgeting, and financial insights simple, clear, and even a little motivating.</p>
+    <p>People love spending on things they love — but they're also concerned about how much they're spending. Unfortunately, not everyone has the time to track their expenses carefully. Expenso helps users track their spending and make more informed financial decisions.</p>
+  </div>
+
+  <div class="case-section">
+    <h2>What users were saying</h2>
+    <p>From talking to users, I found that managing daily expenses often feels messy and overwhelming. Many forget to log small purchases, struggle to track budgets, or miss recurring payments.</p>
+    <div class="quote-grid">
+      <div class="quote-card"><p>"I forget to log small purchases, so my budget is never accurate."</p></div>
+      <div class="quote-card"><p>"I can't quickly see if I'm staying within my budget!"</p></div>
+      <div class="quote-card"><p>"Existing apps feel cluttered and confusing."</p></div>
+      <div class="quote-card"><p>"I don't get reminders for recurring bills or subscriptions."</p></div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Pain points identified</h2>
+    <p>Based on research on expense trackers and existing expense management apps, four core pain points emerged:</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <h4>Tedious Manual Entry</h4>
+        <p>Expensify requires users to scan or manually log every small transaction. Frequent users drop off due to the effort involved in logging every purchase.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <h4>Confusing or Rigid Categories</h4>
+        <p>Zoho offers many preset categories, but customisation feels buried and unintuitive. Pockett has very few categories with limited ways to adjust them.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <h4>Overwhelming or Cluttered UI</h4>
+        <p>Expensify presents too many stats and business-focused features, intimidating casual users. Zoho's dashboard is heavy with charts and tabs — newcomers struggle to find basic expense logging.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">04</div>
+        <h4>Privacy &amp; Trust Concerns</h4>
+        <p>SMS-based apps require sensitive permissions, raising privacy worries. Automated categorisation sometimes misreads promo SMS as expenses, eroding trust in the data.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Problem statement</h2>
+    <p>Most expense trackers feel either too complicated or too limited. Expenso bridges this gap by focusing on what really matters — quick entry, clear insights, and personal control. The app is intended to help users who want to stay on top of their finances without having to become power users of a complex accounting tool.</p>
+    <p>Expenso will be a helpful tool for those looking to manage their finances and daily routines more effectively — turning expense tracking from a chore into a habit.</p>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Competitor analysis</h2>
+    <p>To better understand the market, I reviewed popular expense tracking apps including Expensify, Zoho Expense, Pockett, and SMS-based trackers. While each offers useful features, I found common gaps around simplicity, personalisation, and trust.</p>
+    <table class="competitor-table">
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Ease of logging</th>
+          <th>Category flexibility</th>
+          <th>Insight visualisation</th>
+          <th>Budget alerts</th>
+          <th>Data privacy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Expensify</td>
+          <td><span class="tag-bad">❌ Tedious</span></td>
+          <td><span class="tag-bad">❌ Rigid</span></td>
+          <td><span class="tag-good">✓ Detailed</span></td>
+          <td><span class="tag-bad">❌ Limited</span></td>
+          <td><span class="tag-bad">❌ Concerns</span></td>
+        </tr>
+        <tr>
+          <td>Zoho Expense</td>
+          <td><span class="tag-bad">❌ Complex</span></td>
+          <td><span class="tag-bad">❌ Buried</span></td>
+          <td><span class="tag-good">✓ Good</span></td>
+          <td><span class="tag-bad">❌ Limited</span></td>
+          <td><span class="tag-bad">❌ Concerns</span></td>
+        </tr>
+        <tr>
+          <td>Pockett</td>
+          <td><span class="tag-good">✓ Simple</span></td>
+          <td><span class="tag-bad">❌ Very few</span></td>
+          <td><span class="tag-bad">❌ Basic</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+          <td><span class="tag-good">✓ Good</span></td>
+        </tr>
+        <tr>
+          <td>SMS-based apps</td>
+          <td><span class="tag-good">✓ Automated</span></td>
+          <td><span class="tag-bad">❌ Auto-only</span></td>
+          <td><span class="tag-bad">❌ Minimal</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+          <td><span class="tag-bad">❌ High risk</span></td>
+        </tr>
+        <tr>
+          <td><strong>Expenso</strong></td>
+          <td><span class="tag-good">✓ Fast &amp; simple</span></td>
+          <td><span class="tag-good">✓ Flexible tags</span></td>
+          <td><span class="tag-good">✓ Clear charts</span></td>
+          <td><span class="tag-good">✓ Smart alerts</span></td>
+          <td><span class="tag-good">✓ User-controlled</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>What Expenso solves</h2>
+    <p>With these features, Expenso transforms expense tracking into a tool that supports smarter decisions and healthier financial habits.</p>
+    <div class="solves-grid">
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4>Fast Logging</h4>
+        <p>Add expenses in just a few taps — no clutter, no unnecessary steps. Quick-add from the home screen keeps the habit effortless.</p>
+      </div>
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4>Smart Categories</h4>
+        <p>Flexible tagging that adapts to how each user actually spends — not rigid presets that force expenses into the wrong bucket.</p>
+      </div>
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4>Check Trends</h4>
+        <p>Weekly and monthly spending trends shown as clear, visual charts — so users can instantly spot where their money is going.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEFINE ── -->
+  <div class="case-section">
+    <div class="phase-label">Define</div>
+    <h2>Sitemap &amp; user flows</h2>
+    <p>To make sure the app feels intuitive, I tested key flows that reflect how users manage money daily. The focus was on adding expenses quickly, tracking budgets, viewing trends, and staying on top of recurring payments.</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Log an expense or income</h4>
+          <p>Quick-add button for fast entry with fields for amount, category, date, and notes — designed to take under 10 seconds.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Check category-wise spending &amp; budget progress</h4>
+          <p>Dashboard overview with visual progress bars and category breakdowns — users see at a glance if they're on track.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>View weekly or monthly trend reports</h4>
+          <p>Trend graphs with filters by time and category — highlights of top spending areas or unusual expenses surface automatically.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Set budgets &amp; receive overspend alerts</h4>
+          <p>Users set budget limits per category, and receive smart notifications before they overspend — not after.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>Manage recurring bills &amp; subscriptions</h4>
+          <p>A dedicated recurring payments tracker with reminders, so no subscription or bill is ever missed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <div class="phase-label">Define</div>
+    <h2>The design system</h2>
+    <p>I wanted Expenso to feel clean, friendly, and trustworthy — the opposite of the heavy, business-focused tools I had analysed. The colour palette centres on a warm orange for CTAs and key interactions, paired with a near-white background and dark grey text for readability.</p>
+    <div class="colour-swatches">
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#FF6D3F;"></div>
+        <div class="swatch-info"><label>Primary / CTA</label><span>#FF6D3F</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#303046;"></div>
+        <div class="swatch-info"><label>Primary text</label><span>#303046</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:#FAFBFB; border:1px solid #e0e0e0;"></div>
+        <div class="swatch-info"><label>Background</label><span>#FAFBFB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-image" style="padding-top:0;">
+    <img src="expense app images/2.png" alt="Expenso design system" style="border-radius:10px;" />
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEVELOP ── -->
+  <div class="screen-gallery">
+    <div class="phase-label">Develop</div>
+    <h2>High fidelity screens</h2>
+    <p>Once the flows were solid, I brought the app to life with a clean, friendly design. I focused on making it easy for users to log expenses, see their budgets at a glance, and track trends without feeling overwhelmed.</p>
+    <div class="screens-grid-3">
+      <img src="expense app images/3.png" alt="Expenso – Dashboard" />
+      <img src="expense app images/4.png" alt="Expenso – Add expense" />
+      <img src="expense app images/5.png" alt="Expenso – Categories" />
+    </div>
+    <div class="screens-grid-3">
+      <img src="expense app images/6.png" alt="Expenso – Budget tracking" />
+      <img src="expense app images/7.png" alt="Expenso – Reports" />
+      <img src="expense app images/1.png" alt="Expenso – Home" />
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DELIVER ── -->
+  <div class="case-section">
+    <div class="phase-label">Deliver</div>
+    <h2>My learnings</h2>
+    <p>This project taught me that financial apps require an extra layer of trust-building — every design decision has to feel safe, clear, and honest. Complexity that helps power users can alienate everyday users entirely.</p>
+    <div class="takeaways-grid">
+      <div class="takeaway-card">
+        <h4>Simplicity is a strategy</h4>
+        <p>Removing features that most users won't use made the core experience significantly stronger. The hardest design decision was what to leave out.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>Visual feedback builds trust</h4>
+        <p>Colour-coded categories and progress bars gave users instant clarity on their spending — no mental math required. Small visual cues carry a lot of weight in finance apps.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>Reduce friction at the point of entry</h4>
+        <p>The biggest drop-off in expense apps happens when logging feels like work. Making the add-expense flow as fast as possible was the single most impactful design priority.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>What's next</h4>
+        <p>Explore a receipt scanning feature for automatic entry. Add a savings goals module. Improve accessibility for users managing money under stress — colour alone should never be the only indicator.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Lisha Thomas &copy; 2026</span>
+    <span>UX Designer, Dubai</span>
+  </footer>
+
+</body>
+</html>
