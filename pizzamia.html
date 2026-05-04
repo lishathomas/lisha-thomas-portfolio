@@ -15,8 +15,11 @@
       --white: #ffffff;
       --black: #111111;
       --grey-text: #555555;
+      --light-bg: #f7f7f7;
+      --red: #F72E10;
       --font-heading: 'ClashDisplay-Variable', 'Clash Display', sans-serif;
       --font-body: 'Manrope', sans-serif;
+      --side: 200px;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,14 +36,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 30px 200px;
+      padding: 30px var(--side);
       position: sticky;
       top: 0;
       background: rgba(255,255,255,0.97);
       backdrop-filter: blur(8px);
       z-index: 100;
     }
-
     .nav-name {
       font-family: var(--font-body);
       font-size: 15px;
@@ -48,15 +50,8 @@
       color: var(--black);
       text-decoration: none;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 44px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 44px; list-style: none; }
     .nav-links a {
-      font-family: var(--font-body);
       font-size: 15px;
       font-weight: 400;
       color: var(--black);
@@ -64,21 +59,17 @@
       position: relative;
       padding-bottom: 6px;
     }
-
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
       background: var(--black);
       transition: width 0.25s ease;
     }
-
     .nav-links a:hover::after { width: 100%; }
 
-    /* BACK LINK */
+    /* BACK */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -87,80 +78,65 @@
       font-weight: 400;
       color: var(--grey-text);
       text-decoration: none;
-      padding: 48px 200px 0;
+      padding: 48px var(--side) 0;
       transition: color 0.2s;
       opacity: 0;
       animation: fadeUp 0.6s ease 0.1s forwards;
     }
-
     .back-link:hover { color: var(--black); }
-
-    .back-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* HERO */
     .project-hero {
-      padding: 36px 200px 64px;
+      padding: 36px var(--side) 56px;
       opacity: 0;
       animation: fadeUp 0.7s ease 0.2s forwards;
     }
-
     .project-hero h1 {
       font-family: var(--font-heading);
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(40px, 5vw, 68px);
       font-weight: 600;
       line-height: 1.05;
       letter-spacing: -0.01em;
       color: var(--black);
       margin-bottom: 14px;
     }
-
     .project-hero .meta {
       font-size: 14px;
       font-weight: 400;
       color: #999;
       letter-spacing: 0.02em;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
-
     .project-hero .overview {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 300;
       color: var(--grey-text);
       line-height: 1.8;
-      max-width: 680px;
+      max-width: 720px;
     }
 
-    /* COVER IMAGE */
+    /* COVER */
     .cover-image {
-      padding: 0 200px 80px;
+      padding: 0 var(--side) 72px;
       opacity: 0;
-      animation: fadeUp 0.7s ease 0.3s forwards;
+      animation: fadeUp 0.7s ease 0.25s forwards;
     }
-
     .cover-image img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       display: block;
       background: #dde7ea;
     }
 
     /* DETAILS STRIP */
     .details-strip {
-      padding: 0 200px 80px;
+      padding: 0 var(--side) 72px;
       display: flex;
       gap: 80px;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.35s forwards;
+      animation: fadeUp 0.6s ease 0.3s forwards;
     }
-
     .detail-item label {
       display: block;
       font-size: 11px;
@@ -170,102 +146,349 @@
       color: #aaa;
       margin-bottom: 6px;
     }
-
     .detail-item span {
       font-size: 15px;
       font-weight: 400;
       color: var(--black);
     }
 
-    /* SECTION */
-    .case-section {
-      padding: 0 200px 72px;
+    /* TABLE OF CONTENTS */
+    .toc {
+      padding: 56px var(--side);
+      background: var(--light-bg);
+      margin-bottom: 80px;
       opacity: 0;
-      animation: fadeUp 0.6s ease 0.4s forwards;
+      animation: fadeUp 0.6s ease 0.35s forwards;
+    }
+    .toc-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 32px;
+    }
+    .toc-phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .toc-phase h3 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    .toc-phase ul {
+      list-style: none;
+    }
+    .toc-phase ul li {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey-text);
+      padding: 5px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .toc-phase ul li:last-child { border-bottom: none; }
+
+    /* SECTION RULE */
+    .section-rule {
+      border: none;
+      border-top: 1px solid #ebebeb;
+      margin: 0 var(--side) 72px;
     }
 
+    /* CASE SECTION */
+    .case-section {
+      padding: 0 var(--side) 72px;
+    }
+    .phase-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
     .case-section h2 {
       font-family: var(--font-heading);
-      font-size: 26px;
+      font-size: 30px;
       font-weight: 600;
       color: var(--black);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      line-height: 1.1;
     }
-
     .case-section p {
       font-size: 16px;
       font-weight: 300;
       color: var(--grey-text);
       line-height: 1.85;
-      max-width: 680px;
-      margin-bottom: 16px;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .case-section p:last-child { margin-bottom: 0; }
+
+    /* QUOTE CARDS */
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .quote-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 28px 32px;
+      border-left: 3px solid var(--red);
+    }
+    .quote-card p {
+      font-size: 15px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.7;
+      font-style: italic;
+      margin: 0;
+      max-width: none;
     }
 
-    .case-section p:last-child { margin-bottom: 0; }
+    /* PAIN POINTS GRID */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .pain-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 28px 32px;
+    }
+    .pain-card .num {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 600;
+      color: #e8e8e8;
+      margin-bottom: 10px;
+    }
+    .pain-card h4 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .pain-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* COMPETITOR TABLE */
+    .competitor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: 14px;
+    }
+    .competitor-table th {
+      text-align: left;
+      font-weight: 500;
+      font-size: 13px;
+      color: #999;
+      padding: 12px 16px;
+      border-bottom: 2px solid #ebebeb;
+      letter-spacing: 0.03em;
+    }
+    .competitor-table th:first-child { padding-left: 0; }
+    .competitor-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      color: var(--grey-text);
+      font-weight: 300;
+      vertical-align: top;
+    }
+    .competitor-table td:first-child {
+      padding-left: 0;
+      font-weight: 500;
+      color: var(--black);
+    }
+    .competitor-table tr:last-child td { border-bottom: none; }
+    .tag-bad { color: #c0392b; }
+    .tag-good { color: #27ae60; }
+
+    /* WHAT APP SOLVES */
+    .solves-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .solve-card {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 32px 28px;
+    }
+    .solve-card .icon {
+      width: 40px;
+      height: 40px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .solve-card .icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .solve-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .solve-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* USER FLOWS */
+    .flow-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .flow-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 28px;
+      background: var(--light-bg);
+      border-radius: 10px;
+    }
+    .flow-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+      color: #e0e0e0;
+      line-height: 1;
+      min-width: 36px;
+    }
+    .flow-content h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .flow-content p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin: 0;
+      max-width: none;
+    }
 
     /* SCREEN GALLERY */
     .screen-gallery {
-      padding: 0 200px 80px;
-      opacity: 0;
-      animation: fadeUp 0.6s ease 0.45s forwards;
+      padding: 0 var(--side) 72px;
     }
-
     .screen-gallery h2 {
       font-family: var(--font-heading);
-      font-size: 26px;
+      font-size: 30px;
       font-weight: 600;
       color: var(--black);
-      margin-bottom: 32px;
+      margin-bottom: 8px;
     }
-
-    .screens-grid {
+    .screen-gallery .phase-label { margin-bottom: 10px; }
+    .screen-gallery p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.85;
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+    .screens-grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
-
-    .screens-grid img {
+    .screens-grid-3 img, .screens-grid-2 img, .screens-row img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
       display: block;
-      background: #dde7ea;
+      background: #f0f0f0;
     }
-
-    .screens-grid-2col {
+    .screens-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 20px;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .screens-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .screens-grid-2col img {
-      width: 100%;
-      border-radius: 8px;
-      display: block;
-      background: #dde7ea;
+    /* TAKEAWAYS */
+    .takeaways-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
     }
-
-    /* DIVIDER */
-    .section-rule {
-      border: none;
-      border-top: 1px solid #ebebeb;
-      margin: 0 200px 72px;
+    .takeaway-card {
+      padding: 32px;
+      border: 1px solid #ebebeb;
+      border-radius: 10px;
+    }
+    .takeaway-card h4 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .takeaway-card p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.8;
+      margin: 0;
+      max-width: none;
     }
 
     /* FOOTER */
     footer {
-      padding: 28px 200px;
+      padding: 28px var(--side);
       border-top: 1px solid #ebebeb;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
-    footer span {
-      font-size: 13px;
-      color: #bbb;
-      font-weight: 300;
-    }
+    footer span { font-size: 13px; color: #bbb; font-weight: 300; }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
@@ -275,15 +498,12 @@
 
     /* RESPONSIVE */
     @media (max-width: 860px) {
-      nav, .project-hero, .cover-image, .details-strip,
-      .case-section, .screen-gallery, footer {
-        padding-left: 28px;
-        padding-right: 28px;
-      }
-      .back-link { padding-left: 28px; padding-right: 28px; }
-      .section-rule { margin-left: 28px; margin-right: 28px; }
-      .screens-grid { grid-template-columns: repeat(2, 1fr); }
-      .screens-grid-2col { grid-template-columns: 1fr; }
+      :root { --side: 28px; }
+      .toc-phases { grid-template-columns: 1fr 1fr; }
+      .quote-grid, .pain-grid, .takeaways-grid { grid-template-columns: 1fr; }
+      .solves-grid { grid-template-columns: 1fr; }
+      .screens-grid-3, .screens-row { grid-template-columns: repeat(2, 1fr); }
+      .screens-grid-2 { grid-template-columns: 1fr; }
       .details-strip { flex-wrap: wrap; gap: 32px; }
       footer { flex-direction: column; gap: 6px; text-align: center; }
     }
@@ -311,68 +531,333 @@
   <div class="project-hero">
     <h1>Pizzamia</h1>
     <div class="meta">Mobile App &nbsp;·&nbsp; UX / UI Design</div>
-    <p class="overview">Pizzamia is a pizza ordering mobile app designed to make the experience of ordering your favourite pizza fast, delightful, and effortless. The project focused on building an intuitive flow from browsing to checkout, with a visual language that feels warm and appetising.</p>
+    <p class="overview">Pizzamia serves a user-friendly interface and wide range of options for pizzas, making the ordering experience more enjoyable and memorable — from craving to doorstep.</p>
   </div>
 
   <!-- COVER -->
   <div class="cover-image">
-    <img src="pizza app images/Dribble shot light mode.png" alt="Pizzamia cover" />
+    <img src="pizza app images/Dribble shot light mode.png" alt="Pizzamia app overview" />
   </div>
 
-  <!-- DETAILS STRIP -->
+  <!-- DETAILS -->
   <div class="details-strip">
-    <div class="detail-item">
-      <label>Role</label>
-      <span>UX / UI Designer</span>
-    </div>
-    <div class="detail-item">
-      <label>Platform</label>
-      <span>iOS Mobile App</span>
-    </div>
-    <div class="detail-item">
-      <label>Tools</label>
-      <span>Figma</span>
-    </div>
-    <div class="detail-item">
-      <label>Type</label>
-      <span>Personal Project</span>
+    <div class="detail-item"><label>Role</label><span>UX / UI Designer</span></div>
+    <div class="detail-item"><label>Platform</label><span>iOS Mobile App</span></div>
+    <div class="detail-item"><label>Tools</label><span>Figma</span></div>
+    <div class="detail-item"><label>Type</label><span>Personal Project</span></div>
+    <div class="detail-item"><label>Methods</label><span>Competitive Research</span></div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-label">Case Study Overview</div>
+    <div class="toc-phases">
+      <div class="toc-phase">
+        <h3>Discover</h3>
+        <ul>
+          <li>Why pizza lovers?</li>
+          <li>Users &amp; existing apps</li>
+          <li>Pain points</li>
+          <li>Problem statement</li>
+          <li>Competitor analysis</li>
+          <li>What Pizzamia solves</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Define</h3>
+        <ul>
+          <li>Sitemap &amp; user flows</li>
+          <li>Inspiration to prototypes</li>
+          <li>The design system</li>
+          <li>Accessibility standards</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Develop</h3>
+        <ul>
+          <li>High fidelity prototype</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Deliver</h3>
+        <ul>
+          <li>Takeaways</li>
+          <li>My learnings</li>
+          <li>What next</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <hr class="section-rule" />
+  <!-- ── DISCOVER ── -->
 
-  <!-- PROBLEM -->
+  <!-- WHY PIZZA LOVERS -->
   <div class="case-section">
-    <h2>The Problem</h2>
-    <p>Most pizza ordering apps feel cluttered and transactional — long menus, confusing customisation flows, and checkout processes that create unnecessary friction. Users often abandon their order midway due to a lack of visual clarity and feedback.</p>
-    <p>The goal was to design an experience that feels as good as the pizza itself: clean, fast, and satisfying from first tap to order confirmation.</p>
+    <div class="phase-label">Discover</div>
+    <h2>Why pizza lovers?</h2>
+    <p>Pizza is one of the most well-known foods globally, yet users are not kept informed about what happens from the moment they order to the moment it arrives at their door. Not every pizza app makes that experience feel seamless or satisfying.</p>
+    <p>As a frequent user of food delivery apps, I noticed that ordering pizza — despite being one of the most popular fast food choices — often involves clunky interfaces, unclear customisation options, and slow checkout flows. I wanted to fix that.</p>
   </div>
 
-  <hr class="section-rule" />
-
-  <!-- PROCESS -->
+  <!-- PAIN POINTS / USER QUOTES -->
   <div class="case-section">
-    <h2>Design Process</h2>
-    <p>I started with a competitive audit of popular food delivery apps, identifying pain points in the ordering flow. User flows were mapped to understand where drop-offs typically happen, which informed the structure of the navigation and the checkout steps.</p>
-    <p>Low-fidelity wireframes were tested with quick user walkthroughs before moving into high-fidelity UI. The visual design prioritised warm tones, generous whitespace, and mouth-watering photography to drive appetite appeal.</p>
+    <h2>What users were saying</h2>
+    <p>Based on research on pizza lovers and existing pizza delivery apps, these were the recurring frustrations:</p>
+    <div class="quote-grid">
+      <div class="quote-card"><p>"I just want to build my pizza quickly, but I have to scroll forever and I'm never sure what I'm picking."</p></div>
+      <div class="quote-card"><p>"I didn't realize that cheese burst and toppings added so much. The price just shot up at checkout!"</p></div>
+      <div class="quote-card"><p>"I order the same pizza every time — why can't the app remember my favorite combo?"</p></div>
+      <div class="quote-card"><p>"There's probably a coupon that fits my order, but I have no idea where to find it or if it even applies."</p></div>
+    </div>
   </div>
 
   <hr class="section-rule" />
 
-  <!-- SCREENS -->
+  <!-- PAIN POINTS BREAKDOWN -->
+  <div class="case-section">
+    <h2>Pain points identified</h2>
+    <p>After reviewing how users interact with popular pizza apps, four core pain points emerged:</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <h4>Confusing Customisation Experience</h4>
+        <p>Apps show long ingredient lists during customisation without visual feedback. Users scroll endlessly and are never sure what they're selecting.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <h4>Unclear Pricing &amp; Add-ons</h4>
+        <p>None of the existing apps show updated pricing during the topping selection stage. Pricing for add-ons only appears at checkout — a nasty surprise.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <h4>Hard-to-Find Deals &amp; Offers</h4>
+        <p>Offers are listed on banners but don't auto-match with cart contents. Users miss discounts that should apply automatically.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">04</div>
+        <h4>Lack of Personalisation &amp; Smart Suggestions</h4>
+        <p>No app saves favourite pizza builds or auto-suggests based on past orders. Repeat customers have to start from scratch every time.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- PROBLEM STATEMENT -->
+  <div class="case-section">
+    <h2>Problem statement</h2>
+    <p>Pizzamia is an online pizza ordering app intended to serve customers who want to enjoy pizza but cannot visit a restaurant due to time or convenience constraints. The app aims to ensure that the user experience during the ordering process is as positive as possible — so users continue to use it, find their favourite dishes, and recommend it to others.</p>
+    <p>The aim is to walk users through the complete ordering process in a way that feels intuitive, fast, and satisfying from first tap to order confirmation.</p>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- COMPETITOR ANALYSIS -->
+  <div class="case-section">
+    <h2>Competitor analysis</h2>
+    <p>To understand the current landscape, I reviewed popular pizza-ordering apps including Domino's (India), Pizza Hut, OvenStory, Mojo Pizza, and the Zomato pizza ordering experience. My goal was to identify gaps that Pizzamia could address.</p>
+    <table class="competitor-table">
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Customisation flow</th>
+          <th>Live pricing</th>
+          <th>Saved orders</th>
+          <th>Deals usability</th>
+          <th>Visual feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Domino's</td>
+          <td><span class="tag-bad">❌ Inconsistent</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ Basic repeat</span></td>
+          <td><span class="tag-bad">❌ Easy to miss</span></td>
+          <td><span class="tag-bad">❌ Limited</span></td>
+        </tr>
+        <tr>
+          <td>Pizza Hut</td>
+          <td><span class="tag-bad">❌ Confusing</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+          <td><span class="tag-bad">❌ Hidden</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+        </tr>
+        <tr>
+          <td>OvenStory</td>
+          <td><span class="tag-bad">❌ Cluttered</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+          <td><span class="tag-bad">❌ Manual</span></td>
+          <td><span class="tag-bad">❌ Minimal</span></td>
+        </tr>
+        <tr>
+          <td>Mojo Pizza</td>
+          <td><span class="tag-bad">❌ Moderate</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ None</span></td>
+          <td><span class="tag-bad">❌ Inconsistent</span></td>
+          <td><span class="tag-bad">❌ Limited</span></td>
+        </tr>
+        <tr>
+          <td>Zomato</td>
+          <td><span class="tag-bad">❌ Generic</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-good">✓ Basic</span></td>
+          <td><span class="tag-good">✓ Visible</span></td>
+          <td><span class="tag-bad">❌ Limited</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pizzamia</strong></td>
+          <td><span class="tag-good">✓ Visual &amp; clear</span></td>
+          <td><span class="tag-good">✓ Real-time</span></td>
+          <td><span class="tag-good">✓ Smart saves</span></td>
+          <td><span class="tag-good">✓ Auto-applied</span></td>
+          <td><span class="tag-good">✓ Ingredient preview</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- WHAT APP SOLVES -->
+  <div class="case-section">
+    <h2>What Pizzamia solves</h2>
+    <p>Three core features address the biggest drop-off points in the ordering experience:</p>
+    <div class="solves-grid">
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h4>Search &amp; Filters</h4>
+        <p>Predictive search and smart filters help users navigate and find exactly what they need — fast.</p>
+      </div>
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>Flexible Payments</h4>
+        <p>Net banking, credit/debit cards, and cash on delivery — users pay the way they prefer.</p>
+      </div>
+      <div class="solve-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Live Order Tracking</h4>
+        <p>Users can track their order at every stage, from kitchen to doorstep — no guessing required.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEFINE ── -->
+  <div class="case-section">
+    <div class="phase-label">Define</div>
+    <h2>Sitemap &amp; user flows</h2>
+    <p>I started by sketching out the main structure of the app, focusing on what users would actually need first. Looking at how similar apps are organised helped me shape a simple sitemap, which guided my wireframes, design style, and accessibility choices as I brought the idea to life.</p>
+    <p>These flows helped identify what felt natural to users — and what needed refinement to turn a casual craving into a seamless digital experience.</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Explore &amp; Choose</h4>
+          <p>Browsing the menu and selecting a pizza — with visual previews and smart category filters.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Customise Order</h4>
+          <p>Adding toppings with real-time price updates and visual ingredient feedback — so users always know what they're getting.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Apply Offers</h4>
+          <p>Coupons are auto-matched to cart contents, and clearly surfaced before checkout — no hunting required.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Checkout &amp; Track</h4>
+          <p>Smooth payment flow followed by live order tracking from kitchen to doorstep.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- DESIGN SYSTEM -->
+  <div class="case-section">
+    <div class="phase-label">Define</div>
+    <h2>The design system</h2>
+    <p>A strong design system takes the burden off individual designers to think through commonly recurring design problems. I started the brand design process by searching for food ordering branding examples — looking for something warm, motivating, but not intimidating.</p>
+    <p>I used Mobbin to find inspiration for specific pieces on every screen. Using existing design patterns made the product feel immediately familiar while still feeling fresh and distinctly Pizzamia.</p>
+  </div>
+
+  <div class="cover-image" style="padding-top:0;">
+    <img src="pizza app images/15th page.png" alt="Pizzamia design system" style="border-radius:10px;" />
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEVELOP ── -->
   <div class="screen-gallery">
-    <h2>App Screens</h2>
-    <div class="screens-grid">
-      <img src="pizza app images/1.png" alt="Pizzamia screen 1" />
-      <img src="pizza app images/2.png" alt="Pizzamia screen 2" />
-      <img src="pizza app images/3.png" alt="Pizzamia screen 3" />
-      <img src="pizza app images/4.png" alt="Pizzamia screen 4" />
-      <img src="pizza app images/5.png" alt="Pizzamia screen 5" />
-      <img src="pizza app images/6.png" alt="Pizzamia screen 6" />
+    <div class="phase-label">Develop</div>
+    <h2>High fidelity screens</h2>
+    <p>Once the core flows felt solid, I brought the app to life through high-fidelity design. I wanted the experience to feel simple, familiar, and a little bit fun — just like ordering pizza should be.</p>
+    <div class="screens-grid-3">
+      <img src="pizza app images/1.png" alt="Pizzamia screen – Home" />
+      <img src="pizza app images/2.png" alt="Pizzamia screen – Menu" />
+      <img src="pizza app images/3.png" alt="Pizzamia screen – Item detail" />
     </div>
-    <div class="screens-grid-2col">
-      <img src="pizza app images/7.png" alt="Pizzamia screen 7" />
-      <img src="pizza app images/8.png" alt="Pizzamia screen 8" />
+    <div class="screens-grid-3">
+      <img src="pizza app images/4.png" alt="Pizzamia screen – Customise" />
+      <img src="pizza app images/5.png" alt="Pizzamia screen – Cart" />
+      <img src="pizza app images/6.png" alt="Pizzamia screen – Offers" />
+    </div>
+    <div class="screens-grid-3">
+      <img src="pizza app images/7.png" alt="Pizzamia screen – Checkout" />
+      <img src="pizza app images/8.png" alt="Pizzamia screen – Payment" />
+      <img src="pizza app images/9.png" alt="Pizzamia screen – Confirmation" />
+    </div>
+    <div class="screens-grid-3">
+      <img src="pizza app images/10.png" alt="Pizzamia screen – Tracking" />
+      <img src="pizza app images/11.png" alt="Pizzamia screen – Profile" />
+      <img src="pizza app images/12.png" alt="Pizzamia screen – Saved orders" />
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DELIVER ── -->
+  <div class="case-section">
+    <div class="phase-label">Deliver</div>
+    <h2>My learnings</h2>
+    <p>I gained a lot of knowledge while developing this mobile app, realising that the initial thoughts are never the final ones. Every iteration taught me something new about how real users think about food ordering.</p>
+    <div class="takeaways-grid">
+      <div class="takeaway-card">
+        <h4>Research first, design second</h4>
+        <p>Spending time on competitive research before opening Figma saved hours of rework. Understanding where existing apps fail gave me a clear design direction from day one.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>Real-time feedback reduces anxiety</h4>
+        <p>Showing live price updates and ingredient previews during customisation dramatically reduced the "checkout shock" users described. Small interactions carry big trust.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>Familiarity is a feature</h4>
+        <p>Using Mobbin to ground design decisions in established patterns meant users felt at home immediately. Good UX often borrows what already works — then improves on it.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>What's next</h4>
+        <p>Add nutrition details to menu items. Explore a loyalty/rewards system. Improve the order tracking map with live driver location for a more satisfying post-order experience.</p>
+      </div>
     </div>
   </div>
 
