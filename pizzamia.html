@@ -6,7 +6,7 @@
   <title>Pizzamia – Lisha Thomas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Outfit:wght@300;500&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -168,7 +168,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #aaa;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
     .toc-phases {
       display: grid;
@@ -176,25 +176,30 @@
       gap: 40px;
     }
     .toc-phase h3 {
-      font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: #1E1E1E;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      margin-bottom: 16px;
+      text-align: center;
     }
     .toc-phase ul {
       list-style: none;
     }
     .toc-phase ul li {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--grey-text);
-      padding: 5px 0;
-      border-bottom: 1px solid #e8e8e8;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #1925C5;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 6px 0;
     }
-    .toc-phase ul li:last-child { border-bottom: none; }
+    .toc-phase ul li::before {
+      content: '– ';
+    }
 
     /* SECTION RULE */
     .section-rule {
