@@ -557,6 +557,73 @@
       footer { flex-direction: column; gap: 6px; text-align: center; }
     }
 
+    /* Design System */
+    .ds-subsection {
+      margin-top: 40px;
+    }
+    .ds-subsection h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .ds-palette {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ds-swatch {
+      width: 110px;
+      height: 90px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+      gap: 2px;
+    }
+    .ds-swatch span {
+      font-size: 11px;
+      font-weight: 500;
+      color: inherit;
+      background: rgba(255,255,255,0.75);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #333;
+    }
+    .ds-font-name {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .ds-type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 420px;
+    }
+    .ds-type-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #f7f7f7;
+      border-radius: 8px;
+    }
+    .ds-type-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+    }
+    .ds-type-spec {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--grey-text);
+    }
     .accessibility-list {
       display: flex;
       flex-direction: column;
@@ -907,7 +974,42 @@
   <!-- DESIGN SYSTEM -->
   <div class="case-section">
     <h2>The design system</h2>
-    <p>A strong design system takes the burden off individual designers to think through commonly recurring design problems. I started the brand design process by searching for food ordering branding examples — looking for something warm, motivating, but not intimidating.</p>
+    <p>A strong design system takes the burden off individual designers to think through commonly recurring design problems. I started the brand design process by searching for food ordering branding examples. I found that many existing apps have chosen colors and fonts that infuse hunger, energy, and clarity — thus helping the user navigate a simple flow. That gave me a clear understanding of what the new app wants. While that may work for younger audiences, I felt that it could be off-putting for others who are already feeling the limitations of their insecurities on color, text size and images.</p>
+
+    <div class="ds-subsection">
+      <h3>Colour palette</h3>
+      <div class="ds-palette">
+        <div class="ds-swatch" style="background:#F72E10;"><span>#F72E10</span><span>Primary</span></div>
+        <div class="ds-swatch" style="background:#FF6B52;"><span>#FF6B52</span><span>Primary Light</span></div>
+        <div class="ds-swatch" style="background:#1A1A2E; color:#fff;"><span>#1A1A2E</span><span>Dark</span></div>
+        <div class="ds-swatch" style="background:#F5F5F5; border:1px solid #e0e0e0;"><span>#F5F5F5</span><span>Background</span></div>
+        <div class="ds-swatch" style="background:#fff; border:1px solid #e0e0e0;"><span>#FFFFFF</span><span>White</span></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Typography</h3>
+      <p class="ds-font-name">Outfit</p>
+      <div class="ds-type-scale">
+        <div class="ds-type-row"><span class="ds-type-label">Heading 1</span><span class="ds-type-spec">Semibold · 24px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 2</span><span class="ds-type-spec">Semibold · 18px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 3</span><span class="ds-type-spec">Semibold · 16px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 4</span><span class="ds-type-spec">Medium · 14px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 5</span><span class="ds-type-spec">Medium · 12px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Regular · 16px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Caption</span><span class="ds-type-spec">Regular · 11px</span></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Iconography</h3>
+      <p>Icons follow a consistent style — simple, recognisable, and sized to meet the 48×48px touch target minimum across the app.</p>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Components</h3>
+      <p>Core UI components include card layouts, search bar, bottom app bar (Home, Cart, Wishlist, Profile), and reusable pizza item cards — each built to scale consistently across all screens.</p>
+    </div>
   </div>
 
   <hr class="section-rule" />
