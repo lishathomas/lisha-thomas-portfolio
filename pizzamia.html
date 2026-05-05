@@ -557,6 +557,36 @@
       footer { flex-direction: column; gap: 6px; text-align: center; }
     }
 
+    .accessibility-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .accessibility-item h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .accessibility-item h4::before {
+      content: '•';
+      color: #F72E10;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .accessibility-item p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--grey-text);
+      line-height: 1.85;
+      max-width: 620px;
+      margin: 0;
+    }
     #back-to-top {
       position: fixed;
       bottom: 36px;
@@ -885,6 +915,28 @@
   <!-- ACCESSIBILITY STANDARDS -->
   <div class="case-section">
     <h2>Accessibility standards</h2>
+    <div class="accessibility-list">
+      <div class="accessibility-item">
+        <h4>Touch targets</h4>
+        <p>All touch targets are a minimum of 48px by 48px. And I looked for opportunities for touch targets to span the width of the screen.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Color contrast</h4>
+        <p>Every color combination of the brand palette was tested for color contrast to make sure we only used combinations that met WCAG's AA contrast criteria.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Color-blind safe</h4>
+        <p>The brand color palette was checked for possible color-blind conflicts.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Text sizing</h4>
+        <p>Longer paragraph text sizing is set at or above 14px and label text is set at or above 12px bold. Line spacing was set to 150% for easier readability.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Font selection</h4>
+        <p>Outfit &amp; Poppins was chosen as the font is simple and clear to everyone.</p>
+      </div>
+    </div>
   </div>
 
   <hr class="section-rule" />
