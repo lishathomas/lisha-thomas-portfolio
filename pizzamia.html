@@ -442,6 +442,53 @@
       display: block;
       background: #f0f0f0;
     }
+    /* Carousel */
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .carousel-track-container {
+      flex: 1;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      transition: transform 0.4s ease;
+    }
+    .carousel-track img {
+      flex: 0 0 calc((100% - 32px) / 3);
+      width: calc((100% - 32px) / 3);
+      border-radius: 10px;
+      display: block;
+      background: #f0f0f0;
+    }
+    .carousel-btn {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #e0e0e0;
+      background: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .carousel-btn:hover {
+      background: #F72E10;
+      border-color: #F72E10;
+      color: #fff;
+    }
+    .carousel-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
     .screens-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -822,25 +869,25 @@
     <div class="phase-label">Deliver</div>
     <h2>High fidelity prototypes</h2>
     <p>Once the core flows felt solid, I brought the app to life through high-fidelity design. I wanted the experience to feel simple, familiar, and a little bit fun — just like ordering pizza should be.</p>
-    <div class="screens-grid-3">
-      <img src="pizza app images/1.png" alt="Pizzamia screen – Home" />
-      <img src="pizza app images/2.png" alt="Pizzamia screen – Menu" />
-      <img src="pizza app images/3.png" alt="Pizzamia screen – Item detail" />
-    </div>
-    <div class="screens-grid-3">
-      <img src="pizza app images/4.png" alt="Pizzamia screen – Customise" />
-      <img src="pizza app images/5.png" alt="Pizzamia screen – Cart" />
-      <img src="pizza app images/6.png" alt="Pizzamia screen – Offers" />
-    </div>
-    <div class="screens-grid-3">
-      <img src="pizza app images/7.png" alt="Pizzamia screen – Checkout" />
-      <img src="pizza app images/8.png" alt="Pizzamia screen – Payment" />
-      <img src="pizza app images/9.png" alt="Pizzamia screen – Confirmation" />
-    </div>
-    <div class="screens-grid-3">
-      <img src="pizza app images/10.png" alt="Pizzamia screen – Tracking" />
-      <img src="pizza app images/11.png" alt="Pizzamia screen – Profile" />
-      <img src="pizza app images/12.png" alt="Pizzamia screen – Saved orders" />
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="hifi-carousel">
+          <img src="pizza app images/1.png" alt="Pizzamia screen – Home" />
+          <img src="pizza app images/2.png" alt="Pizzamia screen – Menu" />
+          <img src="pizza app images/3.png" alt="Pizzamia screen – Item detail" />
+          <img src="pizza app images/4.png" alt="Pizzamia screen – Customise" />
+          <img src="pizza app images/5.png" alt="Pizzamia screen – Cart" />
+          <img src="pizza app images/6.png" alt="Pizzamia screen – Offers" />
+          <img src="pizza app images/7.png" alt="Pizzamia screen – Checkout" />
+          <img src="pizza app images/8.png" alt="Pizzamia screen – Payment" />
+          <img src="pizza app images/9.png" alt="Pizzamia screen – Confirmation" />
+          <img src="pizza app images/10.png" alt="Pizzamia screen – Tracking" />
+          <img src="pizza app images/11.png" alt="Pizzamia screen – Profile" />
+          <img src="pizza app images/12.png" alt="Pizzamia screen – Saved orders" />
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
     </div>
   </div>
 
@@ -875,6 +922,31 @@
     <span>Lisha Thomas &copy; 2026</span>
     <span>UX Designer, Dubai</span>
   </footer>
+
+  <script>
+    (function () {
+      const track = document.getElementById('hifi-carousel');
+      const prevBtn = track.closest('.carousel-wrapper').querySelector('.carousel-prev');
+      const nextBtn = track.closest('.carousel-wrapper').querySelector('.carousel-next');
+      const totalImages = track.children.length;
+      const visible = 3;
+      let current = 0;
+
+      function update() {
+        const imgWidth = track.children[0].getBoundingClientRect().width;
+        const gap = 16;
+        track.style.transform = `translateX(-${current * (imgWidth + gap)}px)`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current >= totalImages - visible;
+      }
+
+      prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+      nextBtn.addEventListener('click', () => { if (current < totalImages - visible) { current++; update(); } });
+
+      update();
+      window.addEventListener('resize', update);
+    })();
+  </script>
 
 </body>
 </html>
