@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pizzamia – Lisha Thomas</title>
+  <title>Cardminder – Lisha Thomas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
       --black: #111111;
       --grey-text: #555555;
       --light-bg: #f7f7f7;
-      --red: #F72E10;
+      --accent: #2563EB;
       --font-heading: 'ClashDisplay-Variable', 'Clash Display', sans-serif;
       --font-body: 'Manrope', sans-serif;
       --side: 200px;
@@ -125,12 +125,11 @@
       animation: fadeUp 0.7s ease 0.25s forwards;
     }
     .cover-image img {
-      width: 75%;
-      max-width: 800px;
+      width: 30%;
+      max-width: 320px;
       margin: 0 auto;
       border-radius: 12px;
       display: block;
-      background: #dde7ea;
     }
 
     /* DETAILS STRIP */
@@ -183,12 +182,10 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--accent);
       margin-bottom: 14px;
     }
-    .toc-phase ul {
-      list-style: none;
-    }
+    .toc-phase ul { list-style: none; }
     .toc-phase ul li {
       font-size: 14px;
       font-weight: 400;
@@ -214,7 +211,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--accent);
       margin-bottom: 10px;
     }
     .case-section h2 {
@@ -246,7 +243,7 @@
       background: var(--light-bg);
       border-radius: 10px;
       padding: 28px 32px;
-      border-left: 3px solid var(--red);
+      border-left: 3px solid var(--accent);
     }
     .quote-card p {
       font-size: 15px;
@@ -341,7 +338,7 @@
     .solve-card .icon {
       width: 40px;
       height: 40px;
-      background: var(--red);
+      background: var(--accent);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -432,18 +429,7 @@
       max-width: 720px;
       margin-bottom: 36px;
     }
-    .screens-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .screens-grid-3 img, .screens-grid-2 img, .screens-row img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-      background: #f0f0f0;
-    }
+
     /* Carousel */
     .carousel-wrapper {
       display: flex;
@@ -482,25 +468,14 @@
       transition: background 0.2s, border-color 0.2s;
     }
     .carousel-btn:hover {
-      background: #F72E10;
-      border-color: #F72E10;
+      background: var(--accent);
+      border-color: var(--accent);
       color: #fff;
     }
     .carousel-btn:disabled {
       opacity: 0.3;
       cursor: default;
       pointer-events: none;
-    }
-    .screens-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .screens-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
     }
 
     /* TAKEAWAYS */
@@ -547,22 +522,8 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 860px) {
-      :root { --side: 28px; }
-      .toc-phases { grid-template-columns: 1fr 1fr; }
-      .quote-grid, .pain-grid, .takeaways-grid { grid-template-columns: 1fr; }
-      .solves-grid { grid-template-columns: 1fr; }
-      .screens-grid-3, .screens-row { grid-template-columns: repeat(2, 1fr); }
-      .screens-grid-2 { grid-template-columns: 1fr; }
-      .details-strip { flex-wrap: wrap; gap: 32px; }
-      footer { flex-direction: column; gap: 6px; text-align: center; }
-    }
-
     /* Design System */
-    .ds-subsection {
-      margin-top: 40px;
-    }
+    .ds-subsection { margin-top: 40px; }
     .ds-subsection h3 {
       font-family: var(--font-heading);
       font-size: 20px;
@@ -586,21 +547,9 @@
       border-radius: 10px;
       flex-shrink: 0;
     }
-    .ds-swatch-info {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .ds-swatch-info strong {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--black);
-    }
-    .ds-swatch-info span {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--grey-text);
-    }
+    .ds-swatch-info { display: flex; flex-direction: column; gap: 3px; }
+    .ds-swatch-info strong { font-size: 13px; font-weight: 600; color: var(--black); }
+    .ds-swatch-info span { font-size: 12px; font-weight: 300; color: var(--grey-text); }
     .ds-font-name {
       font-family: var(--font-heading);
       font-size: 36px;
@@ -608,12 +557,7 @@
       color: var(--black);
       margin-bottom: 16px;
     }
-    .ds-type-scale {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 420px;
-    }
+    .ds-type-scale { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
     .ds-type-row {
       display: flex;
       justify-content: space-between;
@@ -622,22 +566,10 @@
       background: #f7f7f7;
       border-radius: 8px;
     }
-    .ds-type-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--black);
-    }
-    .ds-type-spec {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--grey-text);
-    }
-    .accessibility-list {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin-top: 24px;
-    }
+    .ds-type-label { font-size: 14px; font-weight: 500; color: var(--black); }
+    .ds-type-spec { font-size: 13px; font-weight: 300; color: var(--grey-text); }
+
+.accessibility-list { display: flex; flex-direction: column; gap: 32px; margin-top: 24px; }
     .accessibility-item h4 {
       font-family: var(--font-heading);
       font-size: 18px;
@@ -650,7 +582,7 @@
     }
     .accessibility-item h4::before {
       content: '•';
-      color: #F72E10;
+      color: var(--accent);
       font-size: 22px;
       line-height: 1;
     }
@@ -662,6 +594,8 @@
       max-width: 620px;
       margin: 0;
     }
+
+    /* BACK TO TOP */
     #back-to-top {
       position: fixed;
       bottom: 36px;
@@ -683,14 +617,18 @@
       transition: opacity 0.3s, background 0.2s, border-color 0.2s;
       z-index: 999;
     }
-    #back-to-top.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    #back-to-top:hover {
-      background: #F72E10;
-      border-color: #F72E10;
-      color: #fff;
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      :root { --side: 28px; }
+      .toc-phases { grid-template-columns: 1fr 1fr; }
+      .quote-grid, .pain-grid, .takeaways-grid { grid-template-columns: 1fr; }
+      .solves-grid { grid-template-columns: 1fr; }
+      .ds-palette { grid-template-columns: 1fr 1fr; }
+      .details-strip { flex-wrap: wrap; gap: 32px; }
+      footer { flex-direction: column; gap: 6px; text-align: center; }
     }
   </style>
 </head>
@@ -714,14 +652,14 @@
 
   <!-- HERO -->
   <div class="project-hero">
-    <h1>Pizzamia</h1>
+    <h1>Cardminder</h1>
     <div class="meta">Mobile App &nbsp;·&nbsp; UX / UI Design</div>
-    <p class="overview">Pizzamia serves a user-friendly interface and wide range of options for pizzas, making the ordering experience more enjoyable and memorable — from craving to doorstep.</p>
+    <p class="overview">Cardminder is a credit card management app that helps users store their card details, track billing cycles, and receive timely payment reminders — so due dates are never missed and card details are always a tap away when shopping online.</p>
   </div>
 
   <!-- COVER -->
   <div class="cover-image">
-    <img src="pizza app images/Dribble shot light mode.png" alt="Pizzamia app overview" />
+    <img src="card reminder app/homescreenwith frame.png" alt="Cardminder app overview" />
   </div>
 
   <!-- DETAILS -->
@@ -740,7 +678,7 @@
       <div class="toc-phase">
         <h3>Discover</h3>
         <ul>
-          <li>Why pizza lovers</li>
+          <li>Why card management?</li>
           <li>Users and existing apps</li>
           <li>Pain points</li>
         </ul>
@@ -750,7 +688,7 @@
         <ul>
           <li>Problem statement</li>
           <li>Competitor analysis</li>
-          <li>What Pizzamia app solves</li>
+          <li>What Cardminder solves</li>
         </ul>
       </div>
       <div class="toc-phase">
@@ -774,23 +712,23 @@
 
   <!-- ── DISCOVER ── -->
 
-  <!-- WHY PIZZA LOVERS -->
+  <!-- WHY CARD MANAGEMENT -->
   <div class="case-section">
     <div class="phase-label">Discover</div>
-    <h2>Why pizza lovers?</h2>
-    <p>Pizza is one of the most well-known foods globally, yet users are not kept informed about what happens from the moment they order to the moment it arrives at their door. Not every pizza app makes that experience feel seamless or satisfying.</p>
-    <p>As a frequent user of food delivery apps, I noticed that ordering pizza — despite being one of the most popular fast food choices — often involves clunky interfaces, unclear customisation options, and slow checkout flows. I wanted to fix that.</p>
+    <h2>Why credit card reminders?</h2>
+    <p>Most people manage more than one credit card — each with a different bank, billing cycle, and due date. Keeping track of all of them mentally is easy to get wrong, and getting it wrong comes with real consequences: late payment fees, interest charges, and damage to your credit score.</p>
+    <p>Beyond missed payments, there's another friction point that goes overlooked — accessing card details for online purchases. Without your physical card to hand, entering a card number, CVV, or expiry date from memory becomes a frustrating guessing game. I wanted to design an app that solves both problems in one place.</p>
   </div>
 
-  <!-- PAIN POINTS / USER QUOTES -->
+  <!-- USER PAIN POINTS / QUOTES -->
   <div class="case-section">
     <h2>Users and existing apps</h2>
-    <p>Based on research on pizza lovers and existing pizza delivery apps, these were the recurring frustrations:</p>
+    <p>Based on research into how people manage their credit cards today, these were the most common frustrations users shared:</p>
     <div class="quote-grid">
-      <div class="quote-card"><p>"I just want to build my pizza quickly, but I have to scroll forever and I'm never sure what I'm picking."</p></div>
-      <div class="quote-card"><p>"I didn't realize that cheese burst and toppings added so much. The price just shot up at checkout!"</p></div>
-      <div class="quote-card"><p>"I order the same pizza every time — why can't the app remember my favorite combo?"</p></div>
-      <div class="quote-card"><p>"There's probably a coupon that fits my order, but I have no idea where to find it or if it even applies."</p></div>
+      <div class="quote-card"><p>"I missed a payment last month because I forgot the due date. The late fee was more than my minimum payment."</p></div>
+      <div class="quote-card"><p>"I have three credit cards with different billing dates. I can never remember which one is due when."</p></div>
+      <div class="quote-card"><p>"Every time I shop online I have to go find my wallet just to check my CVV number."</p></div>
+      <div class="quote-card"><p>"My bank app only shows my cards with them. I have no single place to see all my cards together."</p></div>
     </div>
   </div>
 
@@ -799,27 +737,27 @@
   <!-- PAIN POINTS BREAKDOWN -->
   <div class="case-section">
     <h2>Pain points</h2>
-    <p>After reviewing how users interact with popular pizza apps, four core pain points emerged:</p>
+    <p>After reviewing how users manage their credit cards day-to-day, four core pain points emerged:</p>
     <div class="pain-grid">
       <div class="pain-card">
         <div class="num">01</div>
-        <h4>Confusing Customisation Experience</h4>
-        <p>Apps show long ingredient lists during customisation without visual feedback. Users scroll endlessly and are never sure what they're selecting.</p>
+        <h4>Missed Payment Due Dates</h4>
+        <p>Users with multiple credit cards struggle to track different billing cycles and due dates. A single missed payment can trigger late fees and negatively impact credit scores.</p>
       </div>
       <div class="pain-card">
         <div class="num">02</div>
-        <h4>Unclear Pricing &amp; Add-ons</h4>
-        <p>None of the existing apps show updated pricing during the topping selection stage. Pricing for add-ons only appears at checkout — a nasty surprise.</p>
+        <h4>No Advance Warning</h4>
+        <p>Banking apps show a due date but don't proactively remind users ahead of time. By the time users notice, it's often too late to avoid a late payment charge.</p>
       </div>
       <div class="pain-card">
         <div class="num">03</div>
-        <h4>Hard-to-Find Deals &amp; Offers</h4>
-        <p>Offers are listed on banners but don't auto-match with cart contents. Users miss discounts that should apply automatically.</p>
+        <h4>Card Details Hard to Access</h4>
+        <p>When shopping online without a physical card nearby, users have no quick way to retrieve their card number, CVV, or expiry date — causing friction at checkout.</p>
       </div>
       <div class="pain-card">
         <div class="num">04</div>
-        <h4>Lack of Personalisation &amp; Smart Suggestions</h4>
-        <p>No app saves favourite pizza builds or auto-suggests based on past orders. Repeat customers have to start from scratch every time.</p>
+        <h4>Scattered Across Multiple Apps</h4>
+        <p>Each bank has its own app. Users with cards from different banks have no single view of all their cards, billing cycles, and upcoming payments in one place.</p>
       </div>
     </div>
   </div>
@@ -830,8 +768,8 @@
   <div class="case-section">
     <div class="phase-label">Define</div>
     <h2>Problem statement</h2>
-    <p>Pizzamia is an online pizza ordering app intended to serve customers who want to enjoy pizza but cannot visit a restaurant due to time or convenience constraints. The app aims to ensure that the user experience during the ordering process is as positive as possible — so users continue to use it, find their favourite dishes, and recommend it to others.</p>
-    <p>The aim is to walk users through the complete ordering process in a way that feels intuitive, fast, and satisfying from first tap to order confirmation.</p>
+    <p>Cardminder is a mobile app designed for people who manage multiple credit cards and want a reliable, stress-free way to stay on top of payment due dates. Users can add their card details and billing cycle, and the app will remind them a set number of days before each payment is due — so no due date is ever missed.</p>
+    <p>Beyond reminders, Cardminder also serves as a secure quick-reference for card details. Users can view their card number, cardholder name, CVV, and expiry date at any time — and copy them directly to their clipboard for fast, friction-free use at online checkouts.</p>
   </div>
 
   <hr class="section-rule" />
@@ -839,58 +777,58 @@
   <!-- COMPETITOR ANALYSIS -->
   <div class="case-section">
     <h2>Competitor analysis</h2>
-    <p>To understand the current landscape, I reviewed popular pizza-ordering apps including Domino's (India), Pizza Hut, OvenStory, Mojo Pizza, and the Zomato pizza ordering experience. My goal was to identify gaps that Pizzamia could address.</p>
+    <p>I reviewed existing tools users turn to for credit card management — including individual banking apps, budgeting tools, and digital wallets. The goal was to identify what was missing that Cardminder could uniquely address.</p>
     <table class="competitor-table">
       <thead>
         <tr>
           <th>App</th>
-          <th>Customisation flow</th>
-          <th>Live pricing</th>
-          <th>Saved orders</th>
-          <th>Deals usability</th>
-          <th>Visual feedback</th>
+          <th>Multi-card support</th>
+          <th>Payment reminders</th>
+          <th>Card detail access</th>
+          <th>Copyable details</th>
+          <th>All banks</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Domino's</td>
-          <td><span class="tag-bad">❌ Inconsistent</span></td>
+          <td>Banking apps</td>
+          <td><span class="tag-bad">❌ Own cards only</span></td>
+          <td><span class="tag-bad">❌ No advance alert</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
           <td><span class="tag-bad">❌ No</span></td>
-          <td><span class="tag-bad">❌ Basic repeat</span></td>
-          <td><span class="tag-bad">❌ Easy to miss</span></td>
+          <td><span class="tag-bad">❌ One bank only</span></td>
+        </tr>
+        <tr>
+          <td>Mint</td>
+          <td><span class="tag-good">✓ Yes</span></td>
           <td><span class="tag-bad">❌ Limited</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
         </tr>
         <tr>
-          <td>Pizza Hut</td>
-          <td><span class="tag-bad">❌ Confusing</span></td>
+          <td>Apple Wallet</td>
+          <td><span class="tag-good">✓ Yes</span></td>
           <td><span class="tag-bad">❌ No</span></td>
-          <td><span class="tag-bad">❌ None</span></td>
-          <td><span class="tag-bad">❌ Hidden</span></td>
-          <td><span class="tag-bad">❌ None</span></td>
-        </tr>
-        <tr>
-          <td>OvenStory</td>
-          <td><span class="tag-bad">❌ Cluttered</span></td>
-          <td><span class="tag-bad">❌ No</span></td>
-          <td><span class="tag-bad">❌ None</span></td>
-          <td><span class="tag-bad">❌ Manual</span></td>
-          <td><span class="tag-bad">❌ Minimal</span></td>
-        </tr>
-        <tr>
-          <td>Mojo Pizza</td>
-          <td><span class="tag-bad">❌ Moderate</span></td>
-          <td><span class="tag-bad">❌ No</span></td>
-          <td><span class="tag-bad">❌ None</span></td>
-          <td><span class="tag-bad">❌ Inconsistent</span></td>
           <td><span class="tag-bad">❌ Limited</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
         </tr>
         <tr>
-          <td>Zomato</td>
-          <td><span class="tag-bad">❌ Generic</span></td>
+          <td>Calendar / Reminders</td>
+          <td><span class="tag-bad">❌ Manual setup</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
           <td><span class="tag-bad">❌ No</span></td>
-          <td><span class="tag-good">✓ Basic</span></td>
-          <td><span class="tag-good">✓ Visible</span></td>
-          <td><span class="tag-bad">❌ Limited</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ Not card-specific</span></td>
+        </tr>
+        <tr>
+          <td>Prism</td>
+          <td><span class="tag-good">✓ Yes</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-bad">❌ No</span></td>
+          <td><span class="tag-good">✓ Yes</span></td>
         </tr>
       </tbody>
     </table>
@@ -900,29 +838,29 @@
 
   <!-- WHAT APP SOLVES -->
   <div class="case-section">
-    <h2>What Pizzamia solves</h2>
-    <p>Three core features address the biggest drop-off points in the ordering experience:</p>
+    <h2>What Cardminder solves</h2>
+    <p>Three core features directly address the problems users face when managing multiple credit cards:</p>
     <div class="solves-grid">
       <div class="solve-card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         </div>
-        <h4>Search &amp; Filters</h4>
-        <p>Predictive search and smart filters help users navigate and find exactly what they need — fast.</p>
+        <h4>Smart Payment Reminders</h4>
+        <p>Users set how many days before the due date they want to be reminded. Cardminder sends a notification at exactly the right time — no more surprise late fees.</p>
       </div>
       <div class="solve-card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
         </div>
-        <h4>Flexible Payments</h4>
-        <p>Net banking, credit/debit cards, and cash on delivery — users pay the way they prefer.</p>
+        <h4>All Cards in One Place</h4>
+        <p>Add any credit card regardless of the bank. View all your cards, billing cycles, and upcoming due dates together in a single, clear dashboard.</p>
       </div>
       <div class="solve-card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         </div>
-        <h4>Live Order Tracking</h4>
-        <p>Users can track their order at every stage, from kitchen to doorstep — no guessing required.</p>
+        <h4>Copyable Card Details</h4>
+        <p>View your card number, cardholder name, CVV, and expiry date at any time. Tap any field to copy it instantly — no more hunting for your physical card when shopping online.</p>
       </div>
     </div>
   </div>
@@ -933,35 +871,35 @@
   <div class="case-section">
     <div class="phase-label">Develop</div>
     <h2>Sitemap &amp; user flows</h2>
-    <p>I started by sketching out the main structure of the app, focusing on what users would actually need first. Looking at how similar apps are organised helped me shape a simple sitemap, which guided my wireframes, design style, and accessibility choices as I brought the idea to life.</p>
-    <p>These flows helped identify what felt natural to users — and what needed refinement to turn a casual craving into a seamless digital experience.</p>
+    <p>I mapped out the core tasks users would need to perform — adding a card with its billing cycle, checking upcoming due dates, viewing card details, and managing reminder preferences. Keeping every flow as short as possible was the guiding principle throughout.</p>
+    <p>These flows helped surface where extra steps were adding unnecessary friction — particularly in the add-card flow, where asking for too many fields upfront could cause users to drop off.</p>
     <div class="flow-list">
       <div class="flow-item">
         <div class="flow-num">1</div>
         <div class="flow-content">
-          <h4>Explore &amp; Choose</h4>
-          <p>Browsing the menu and selecting a pizza — with visual previews and smart category filters.</p>
+          <h4>Add a New Credit Card</h4>
+          <p>Enter card details (card number, cardholder name, CVV, expiry) and set the billing cycle and due date. The app saves the card and schedules reminders automatically.</p>
         </div>
       </div>
       <div class="flow-item">
         <div class="flow-num">2</div>
         <div class="flow-content">
-          <h4>Customise Order</h4>
-          <p>Adding toppings with real-time price updates and visual ingredient feedback — so users always know what they're getting.</p>
+          <h4>View Upcoming Payments</h4>
+          <p>The home screen surfaces cards with payments due soon, ordered by urgency — so users always know what's coming up without having to dig through settings.</p>
         </div>
       </div>
       <div class="flow-item">
         <div class="flow-num">3</div>
         <div class="flow-content">
-          <h4>Apply Offers</h4>
-          <p>Coupons are auto-matched to cart contents, and clearly surfaced before checkout — no hunting required.</p>
+          <h4>Access &amp; Copy Card Details</h4>
+          <p>Tap any card to view its full details. Each field — card number, CVV, expiry, cardholder name — has a copy button so users can paste directly into any online checkout.</p>
         </div>
       </div>
       <div class="flow-item">
         <div class="flow-num">4</div>
         <div class="flow-content">
-          <h4>Checkout &amp; Track</h4>
-          <p>Smooth payment flow followed by live order tracking from kitchen to doorstep.</p>
+          <h4>Edit Card or Reminder Settings</h4>
+          <p>Update card details, adjust the billing cycle, or change how many days in advance the reminder is sent — keeping everything accurate as cards and payment dates change.</p>
         </div>
       </div>
     </div>
@@ -972,9 +910,9 @@
   <!-- INSPIRATION TO PROTOTYPE -->
   <div class="case-section">
     <h2>Inspiration to prototype</h2>
-    <p>I used Mobbin to find inspiration for specific pieces on every screen. Using existing design patterns will lessen the amount of new tech learning the user will have to do in order to use the app. More predictable interactions will help the user feel more confidence when trying the app for the first time.</p>
-    <p>Investing time earlier in the development led to a faster sketch to mid-fi wireframe process.</p>
-    <p>Also, most of the design choices from the sketch wireframes remained through hi-fi iterations.</p>
+    <p>I used Mobbin and existing finance and reminder apps to study how successful products handle sensitive data display and notification-driven interfaces. The goal was to apply familiar, trusted patterns — card-style layouts, tap-to-copy interactions, and clear urgency indicators — in a focused, purpose-built context.</p>
+    <p>Using established patterns reduced the learning curve for new users, which matters especially for a finance app where users need to feel confident and in control from the very first session.</p>
+    <p>The design decisions made in early wireframes — particularly the card detail layout and the reminder lead-time setting — carried through to the final high-fidelity screens with minimal change, which validated the direction early research had set.</p>
   </div>
 
   <hr class="section-rule" />
@@ -982,60 +920,67 @@
   <!-- DESIGN SYSTEM -->
   <div class="case-section">
     <h2>The design system</h2>
-    <p>A strong design system takes the burden off individual designers to think through commonly recurring design problems. I started the brand design process by searching for food ordering branding examples. I found that many existing apps have chosen colors and fonts that infuse hunger, energy, and clarity — thus helping the user navigate a simple flow. That gave me a clear understanding of what the new app wants. While that may work for younger audiences, I felt that it could be off-putting for others who are already feeling the limitations of their insecurities on color, text size and images.</p>
+    <p>I wanted Cardminder to feel trustworthy, calm, and in control — qualities that are essential for an app handling sensitive financial information. The colour palette centres on a confident blue for CTAs and key interactions, paired with clean whites and dark text to keep the focus on what matters: the cards and their due dates.</p>
 
     <div class="ds-subsection">
       <h3>Colour palette</h3>
       <div class="ds-palette">
         <div class="ds-swatch">
-          <div class="ds-swatch-color" style="background:#FEA115;"></div>
-          <div class="ds-swatch-info"><strong>Orange · #FEA115</strong><span>Accent colour · Colour for CTAs</span></div>
+          <div class="ds-swatch-color" style="background:#2563EB;"></div>
+          <div class="ds-swatch-info"><strong>Blue · #2563EB</strong><span>Accent colour · Colour for CTAs</span></div>
         </div>
         <div class="ds-swatch">
-          <div class="ds-swatch-color" style="background:#FEEACB;"></div>
-          <div class="ds-swatch-info"><strong>Light Orange · #FEEACB</strong><span>Background colour for cards</span></div>
+          <div class="ds-swatch-color" style="background:#DBEAFE;"></div>
+          <div class="ds-swatch-info"><strong>Light Blue · #DBEAFE</strong><span>Background colour for cards &amp; highlights</span></div>
         </div>
         <div class="ds-swatch">
-          <div class="ds-swatch-color" style="background:#F3F3F3; border:1px solid #e0e0e0;"></div>
-          <div class="ds-swatch-info"><strong>Light Grey · #F3F3F3</strong><span>Background colour for the app</span></div>
+          <div class="ds-swatch-color" style="background:#F8FAFC; border:1px solid #e0e0e0;"></div>
+          <div class="ds-swatch-info"><strong>Off White · #F8FAFC</strong><span>Background colour for the app</span></div>
         </div>
         <div class="ds-swatch">
-          <div class="ds-swatch-color" style="background:#3F3F3F;"></div>
-          <div class="ds-swatch-info"><strong>Dark Grey · #3F3F3F</strong><span>Secondary text colour · Icon colour</span></div>
+          <div class="ds-swatch-color" style="background:#475569;"></div>
+          <div class="ds-swatch-info"><strong>Slate · #475569</strong><span>Secondary text colour · Icon colour</span></div>
         </div>
         <div class="ds-swatch">
-          <div class="ds-swatch-color" style="background:#1E1E1E;"></div>
-          <div class="ds-swatch-info"><strong>Black · #1E1E1E</strong><span>Primary text colour</span></div>
+          <div class="ds-swatch-color" style="background:#0F172A;"></div>
+          <div class="ds-swatch-info"><strong>Dark · #0F172A</strong><span>Primary text colour</span></div>
         </div>
         <div class="ds-swatch">
           <div class="ds-swatch-color" style="background:#FFFFFF; border:1px solid #e0e0e0;"></div>
-          <div class="ds-swatch-info"><strong>White · #FFFFFF</strong><span>Background colour of bottom app bar</span></div>
+          <div class="ds-swatch-info"><strong>White · #FFFFFF</strong><span>Card surface · Bottom navigation bar</span></div>
         </div>
       </div>
     </div>
 
     <div class="ds-subsection">
-      <h3>Typography</h3>
-      <p class="ds-font-name">Outfit</p>
+      <h3>Typography — Inter</h3>
       <div class="ds-type-scale">
-        <div class="ds-type-row"><span class="ds-type-label">Heading 1</span><span class="ds-type-spec">Semibold · 24px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Heading 2</span><span class="ds-type-spec">Semibold · 18px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Heading 3</span><span class="ds-type-spec">Semibold · 16px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Heading 4</span><span class="ds-type-spec">Medium · 14px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Heading 5</span><span class="ds-type-spec">Medium · 12px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Regular · 16px</span></div>
-        <div class="ds-type-row"><span class="ds-type-label">Caption</span><span class="ds-type-spec">Regular · 11px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 1</span><span class="ds-type-spec">Bold · 24px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 2</span><span class="ds-type-spec">Bold · 12px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Bold · 16px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Semibold · 14px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Bold · 12px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Bottom nav bar</span><span class="ds-type-spec">Semibold · 10px</span></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Card fields — JetBrains Mono</h3>
+      <p style="font-size:15px; font-weight:300; color:var(--grey-text); line-height:1.7; margin-bottom:16px;">Card numbers, CVV, and expiry date fields use <strong style="color:var(--black); font-weight:500;">JetBrains Mono</strong> — a monospace font that makes digit-by-digit reading and copying significantly easier, reducing errors when entering card details at checkout.</p>
+      <div class="ds-type-scale">
+        <div class="ds-type-row"><span class="ds-type-label" style="font-family:monospace;">Card Number</span><span class="ds-type-spec">Bold · 16px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label" style="font-family:monospace;">Card Fields</span><span class="ds-type-spec">Bold · 14px</span></div>
       </div>
     </div>
 
     <div class="ds-subsection">
       <h3>Iconography</h3>
-      <p>Icons follow a consistent style — simple, recognisable, and sized to meet the 48×48px touch target minimum across the app.</p>
+      <p>Icons follow a consistent outlined style — simple, recognisable, and sized to meet the 48×48px touch target minimum to ensure comfortable interaction across all screen sizes.</p>
     </div>
 
     <div class="ds-subsection">
       <h3>Components</h3>
-      <p>Core UI components include card layouts, search bar, bottom app bar (Home, Cart, Wishlist, Profile), and reusable pizza item cards — each built to scale consistently across all screens.</p>
+      <p>Core UI components include the credit card tile, top and bottom navigation bars, a floating action button for adding cards, specialised input fields (card number, CVV, expiry date, billing cycle), a date picker, primary buttons with a "Paid" variant, billing and reminder chips, and a toggle — each built to scale consistently across all screens.</p>
     </div>
   </div>
 
@@ -1047,23 +992,23 @@
     <div class="accessibility-list">
       <div class="accessibility-item">
         <h4>Touch targets</h4>
-        <p>All touch targets are a minimum of 48px by 48px. And I looked for opportunities for touch targets to span the width of the screen.</p>
+        <p>All touch targets are a minimum of 48px by 48px. Where possible, touch targets span the full width of the screen to maximise ease of use — especially important when the app is used quickly at a till.</p>
       </div>
       <div class="accessibility-item">
         <h4>Color contrast</h4>
-        <p>Every color combination of the brand palette was tested for color contrast to make sure we only used combinations that met WCAG's AA contrast criteria.</p>
+        <p>Every colour combination in the brand palette was tested for contrast to ensure all text and interactive elements meet WCAG AA standards for readability.</p>
       </div>
       <div class="accessibility-item">
         <h4>Color-blind safe</h4>
-        <p>The brand color palette was checked for possible color-blind conflicts.</p>
+        <p>The brand colour palette was checked against common colour-blindness types to confirm no critical information is conveyed through colour alone.</p>
       </div>
       <div class="accessibility-item">
         <h4>Text sizing</h4>
-        <p>Longer paragraph text sizing is set at or above 14px and label text is set at or above 12px bold. Line spacing was set to 150% for easier readability.</p>
+        <p>Body text is set at or above 14px and label text at or above 12px bold. Line spacing is set to 150% to support comfortable reading across age groups and screen sizes.</p>
       </div>
       <div class="accessibility-item">
         <h4>Font selection</h4>
-        <p>Outfit &amp; Poppins was chosen as the font is simple and clear to everyone.</p>
+        <p>Inter was chosen for its excellent legibility at small sizes and its widespread familiarity across digital products. JetBrains Mono is used exclusively for card numbers and sensitive data fields — its fixed-width characters make long digit strings significantly easier to read and verify at a glance.</p>
       </div>
     </div>
   </div>
@@ -1074,23 +1019,18 @@
   <div class="screen-gallery">
     <div class="phase-label">Deliver</div>
     <h2>High fidelity prototypes</h2>
-    <p>Once the core flows felt solid, I brought the app to life through high-fidelity design. I wanted the experience to feel simple, familiar, and a little bit fun — just like ordering pizza should be.</p>
+    <p>Once the core flows were solid, I brought the app to life through high-fidelity design. The focus throughout was on making every screen feel calm, trustworthy, and purposeful — particularly the card detail screen, where sensitive information needs to feel secure yet instantly accessible.</p>
     <div class="carousel-wrapper">
       <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
       <div class="carousel-track-container">
         <div class="carousel-track" id="hifi-carousel">
-          <img src="pizza app images/1.png" alt="Pizzamia screen – Home" />
-          <img src="pizza app images/2.png" alt="Pizzamia screen – Menu" />
-          <img src="pizza app images/3.png" alt="Pizzamia screen – Item detail" />
-          <img src="pizza app images/4.png" alt="Pizzamia screen – Customise" />
-          <img src="pizza app images/5.png" alt="Pizzamia screen – Cart" />
-          <img src="pizza app images/6.png" alt="Pizzamia screen – Offers" />
-          <img src="pizza app images/7.png" alt="Pizzamia screen – Checkout" />
-          <img src="pizza app images/8.png" alt="Pizzamia screen – Payment" />
-          <img src="pizza app images/9.png" alt="Pizzamia screen – Confirmation" />
-          <img src="pizza app images/10.png" alt="Pizzamia screen – Tracking" />
-          <img src="pizza app images/11.png" alt="Pizzamia screen – Profile" />
-          <img src="pizza app images/12.png" alt="Pizzamia screen – Saved orders" />
+          <img src="card reminder app/homescreenwith frame.png" alt="Cardminder – Home screen" />
+          <img src="card reminder app/all cards screen with frame.png" alt="Cardminder – All cards" />
+          <img src="card reminder app/cards detail screen with frame.png" alt="Cardminder – Card detail" />
+          <img src="card reminder app/add card creen with frame.png" alt="Cardminder – Add card" />
+          <img src="card reminder app/edit card screen with frame.png" alt="Cardminder – Edit card" />
+          <img src="card reminder app/delete screen with frame.png" alt="Cardminder – Delete card" />
+          <img src="card reminder app/settings screen with frame.png" alt="Cardminder – Settings" />
         </div>
       </div>
       <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
@@ -1102,23 +1042,23 @@
   <!-- TAKEAWAYS -->
   <div class="case-section">
     <h2>Takeaways</h2>
-    <p>I gained a lot of knowledge while developing this mobile app, realising that the initial thoughts are never the final ones. Every iteration taught me something new about how real users think about food ordering.</p>
+    <p>Designing Cardminder reinforced that the best utility apps solve a specific, real problem — and solve it completely. A focused scope made every design decision clearer.</p>
     <div class="takeaways-grid">
       <div class="takeaway-card">
-        <h4>Research first, design second</h4>
-        <p>Spending time on competitive research before opening Figma saved hours of rework. Understanding where existing apps fail gave me a clear design direction from day one.</p>
+        <h4>Proactive design beats reactive design</h4>
+        <p>Showing users what's coming — rather than waiting for them to check — is what makes a reminder app genuinely useful. The home screen's urgency-ordered list was the single most important design decision in the project.</p>
       </div>
       <div class="takeaway-card">
-        <h4>Real-time feedback reduces anxiety</h4>
-        <p>Showing live price updates and ingredient previews during customisation dramatically reduced the "checkout shock" users described. Small interactions carry big trust.</p>
+        <h4>Trust is earned through detail</h4>
+        <p>For a finance app, small decisions — clear typography, a calm colour palette, and an uncluttered layout — communicate reliability. Users need to feel the app is as careful with their data as they are.</p>
       </div>
       <div class="takeaway-card">
-        <h4>Familiarity is a feature</h4>
-        <p>Using Mobbin to ground design decisions in established patterns meant users felt at home immediately. Good UX often borrows what already works — then improves on it.</p>
+        <h4>Copyable data removes real friction</h4>
+        <p>Adding tap-to-copy to individual card fields turned a pain point (re-typing card details at checkout) into a one-tap interaction. Simple affordances can have an outsized impact on everyday usability.</p>
       </div>
       <div class="takeaway-card">
         <h4>What's next</h4>
-        <p>Add nutrition details to menu items. Explore a loyalty/rewards system. Improve the order tracking map with live driver location for a more satisfying post-order experience.</p>
+        <p>Explore a home screen widget for at-a-glance payment reminders. Add the ability to mark a payment as done to clear it from the upcoming list. Consider a spending notes field for each billing cycle.</p>
       </div>
     </div>
   </div>

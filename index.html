@@ -27,6 +27,8 @@
       color: var(--black);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
+      max-width: 1440px;
+      margin: 0 auto;
     }
 
     /* NAV */
@@ -202,8 +204,8 @@
     }
 
     /* Generic cards */
+    .thumb-cardminder { background: #dce8ff; }
     .thumb-digital { background: #e0eae4; }
-    .thumb-rewards { background: #ece8e2; }
 
     .card-mockup {
       width: 80%;
@@ -398,7 +400,18 @@
         </div>
       </a>
 
-      <!-- Card 3: Digital Ordering -->
+      <!-- Card 3: Cardminder -->
+      <a href="cardminder.html" class="project-card" style="text-decoration:none; color:inherit; display:block;">
+        <div class="project-thumb thumb-cardminder">
+          <img src="card reminder app/homescreenwith frame.png" alt="Cardminder project" style="width:100%; height:100%; object-fit:contain; padding: 8px;" />
+        </div>
+        <div class="project-info">
+          <div class="project-title">Cardminder</div>
+          <div class="project-tag">Mobile App · UX / UI Design</div>
+        </div>
+      </a>
+
+      <!-- Card 4: Digital Ordering -->
       <div class="project-card">
         <div class="project-thumb thumb-digital">
           <svg width="78%" height="78%" viewBox="0 0 340 220" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -441,38 +454,6 @@
         </div>
       </div>
 
-      <!-- Card 4: Rewards Experience -->
-      <div class="project-card">
-        <div class="project-thumb thumb-rewards">
-          <svg width="78%" height="78%" viewBox="0 0 340 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Single centered phone -->
-            <rect x="108" y="10" width="124" height="200" rx="18" fill="#c4b8a8"/>
-            <rect x="114" y="22" width="112" height="176" rx="10" fill="#fdf6f0"/>
-            <!-- Status bar -->
-            <rect x="122" y="30" width="40" height="6" rx="3" fill="#d4c5b0"/>
-            <rect x="182" y="30" width="36" height="6" rx="3" fill="#d4c5b0"/>
-            <!-- Profile header -->
-            <circle cx="170" cy="64" r="18" fill="#e8d8c8"/>
-            <circle cx="170" cy="64" r="10" fill="#c4a882"/>
-            <!-- Reward card -->
-            <rect x="120" y="90" width="100" height="56" rx="8" fill="#e53935" opacity="0.15"/>
-            <rect x="120" y="90" width="100" height="56" rx="8" stroke="#e53935" stroke-width="1.5" opacity="0.3"/>
-            <rect x="128" y="100" width="60" height="8" rx="3" fill="#bf360c" opacity="0.5"/>
-            <rect x="128" y="114" width="44" height="16" rx="4" fill="#bf360c" opacity="0.3"/>
-            <rect x="176" y="114" width="36" height="16" rx="4" fill="#bf360c" opacity="0.2"/>
-            <!-- List items -->
-            <rect x="120" y="154" width="100" height="10" rx="3" fill="#d4c5b0"/>
-            <rect x="120" y="170" width="80" height="10" rx="3" fill="#d4c5b0"/>
-            <rect x="120" y="186" width="92" height="10" rx="3" fill="#d4c5b0"/>
-            <!-- Stars -->
-            <text x="126" y="148" font-size="10" fill="#f9a825" opacity="0.7">★ ★ ★ ★ ★</text>
-          </svg>
-        </div>
-        <div class="project-info">
-          <div class="project-title">Rewards Experience</div>
-          <div class="project-tag">Mobile · UX / UI Design</div>
-        </div>
-      </div>
 
     </div>
   </section>
