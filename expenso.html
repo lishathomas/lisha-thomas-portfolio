@@ -548,6 +548,7 @@
     <div class="phase-label">Deliver</div>
     <h2>High fidelity prototype</h2>
     <p>Once the flows were solid, I brought the app to life with a clean, friendly design. I focused on making it easy for users to log expenses, see their budgets at a glance, and track trends without feeling overwhelmed.</p>
+    <p style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:14px;">Dark mode</p>
     <div class="carousel-wrapper">
       <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
       <div class="carousel-track-container">
@@ -559,6 +560,23 @@
           <img src="expense app images/5.png" alt="Expenso – Budget" />
           <img src="expense app images/6.png" alt="Expenso – Reports" />
           <img src="expense app images/7.png" alt="Expenso – Settings" />
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
+    </div>
+
+    <p style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-top:40px; margin-bottom:14px;">Light mode</p>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-prev" aria-label="Previous">&#8592;</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="hifi-carousel-light">
+          <img src="expense app images/Detail page.png" alt="Expenso Light – Detail" />
+          <img src="expense app images/Category.png" alt="Expenso Light – Category" />
+          <img src="expense app images/edit.png" alt="Expenso Light – Edit" />
+          <img src="expense app images/add item.png" alt="Expenso Light – Add item" />
+          <img src="expense app images/Preview - item page.png" alt="Expenso Light – Item preview" />
+          <img src="expense app images/Preview-category page.png" alt="Expenso Light – Category preview" />
+          <img src="expense app images/Preview-category-food.png" alt="Expenso Light – Food category" />
         </div>
       </div>
       <button class="carousel-btn carousel-next" aria-label="Next">&#8594;</button>
@@ -636,6 +654,28 @@
       prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
       nextBtn.addEventListener('click', () => { if (current < totalImages - visible) { current++; update(); } });
 
+      update();
+      window.addEventListener('resize', update);
+    })();
+
+    (function () {
+      const track = document.getElementById('hifi-carousel-light');
+      const prevBtn = track.closest('.carousel-wrapper').querySelector('.carousel-prev');
+      const nextBtn = track.closest('.carousel-wrapper').querySelector('.carousel-next');
+      const totalImages = track.children.length;
+      const visible = 3;
+      let current = 0;
+
+      function update() {
+        const imgWidth = track.children[0].getBoundingClientRect().width;
+        const gap = 16;
+        track.style.transform = `translateX(-${current * (imgWidth + gap)}px)`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current >= totalImages - visible;
+      }
+
+      prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+      nextBtn.addEventListener('click', () => { if (current < totalImages - visible) { current++; update(); } });
       update();
       window.addEventListener('resize', update);
     })();
