@@ -47,6 +47,13 @@
     /* COVER */
     .cover-image { padding: 0 var(--side) 72px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
     .cover-image img { width: 75%; max-width: 800px; margin: 0 auto; border-radius: 12px; display: block; background: #f0ede8; }
+    .cover-carousel { display: flex; align-items: center; gap: 16px; width: 75%; max-width: 800px; margin: 0 auto; }
+    .cover-track-container { overflow: hidden; flex: 1; }
+    .cover-track { display: flex; transition: transform 0.4s ease; }
+    .cover-track img { flex: 0 0 100%; width: 100%; max-width: none; border-radius: 12px; display: block; background: #f0ede8; margin: 0; }
+    .cover-btn { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #e0e0e0; background: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: background 0.2s, border-color 0.2s; }
+    .cover-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .cover-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
 
     /* DETAILS STRIP */
     .details-strip { padding: 0 var(--side) 72px; display: flex; gap: 80px; opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards; }
@@ -202,7 +209,16 @@
 
   <!-- COVER -->
   <div class="cover-image">
-    <img src="expense app images/q.png" alt="Expenso app overview" />
+    <div class="cover-carousel">
+      <button class="cover-btn cover-prev" aria-label="Previous">&#8592;</button>
+      <div class="cover-track-container">
+        <div class="cover-track" id="cover-carousel">
+          <img src="expense app images/q.png" alt="Expenso – Light mode" />
+          <img src="expense app images/Dribble shot dark mode.png" alt="Expenso – Dark mode" />
+        </div>
+      </div>
+      <button class="cover-btn cover-next" aria-label="Next">&#8594;</button>
+    </div>
   </div>
 
   <!-- DETAILS -->
@@ -583,6 +599,24 @@
   <button id="back-to-top" aria-label="Back to top">&#8593;</button>
 
   <script>
+    (function () {
+      const track = document.getElementById('cover-carousel');
+      const prevBtn = track.closest('.cover-carousel').querySelector('.cover-prev');
+      const nextBtn = track.closest('.cover-carousel').querySelector('.cover-next');
+      const total = track.children.length;
+      let current = 0;
+
+      function update() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+      }
+
+      prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+      nextBtn.addEventListener('click', () => { if (current < total - 1) { current++; update(); } });
+      update();
+    })();
+
     (function () {
       const track = document.getElementById('hifi-carousel');
       const prevBtn = track.closest('.carousel-wrapper').querySelector('.carousel-prev');
