@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekli – Lisha Thomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --black: #111111;
+      --grey-text: #555555;
+      --light-bg: #f7f7f7;
+      --accent: #5AA474;
+      --font-heading: 'ClashDisplay-Variable', 'Clash Display', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --side: 200px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: var(--font-body); -webkit-font-smoothing: antialiased; max-width: 1440px; margin: 0 auto; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 30px var(--side); position: sticky; top: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); z-index: 100; }
+    .nav-name { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--black); text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 400; color: var(--black); text-decoration: none; position: relative; padding-bottom: 6px; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--black); transition: width 0.25s ease; }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* BACK */
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 400; color: var(--grey-text); text-decoration: none; padding: 48px var(--side) 0; transition: color 0.2s; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards; }
+    .back-link:hover { color: var(--black); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* HERO */
+    .project-hero { padding: 36px var(--side) 56px; opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards; }
+    .project-hero h1 { font-family: var(--font-heading); font-size: clamp(40px, 5vw, 68px); font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; color: var(--black); margin-bottom: 14px; }
+    .project-hero .meta { font-size: 14px; font-weight: 400; color: #999; letter-spacing: 0.02em; margin-bottom: 32px; }
+    .project-hero .overview { font-size: 18px; font-weight: 300; color: var(--grey-text); line-height: 1.8; max-width: 720px; }
+
+    /* COVER */
+    .cover-image { padding: 0 var(--side) 72px; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
+    .cover-placeholder { width: 75%; max-width: 800px; margin: 0 auto; border-radius: 12px; background: #d8eddf; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .cover-placeholder svg { opacity: 0.45; }
+    .cover-placeholder span { font-size: 13px; font-weight: 500; color: #7db387; letter-spacing: 0.08em; text-transform: uppercase; }
+    .cover-carousel { display: flex; align-items: center; gap: 16px; width: 75%; max-width: 800px; margin: 0 auto; }
+    .cover-track-container { overflow: hidden; flex: 1; }
+    .cover-track { display: flex; transition: transform 0.4s ease; }
+    .cover-track img { flex: 0 0 100%; width: 100%; border-radius: 12px; display: block; }
+    .cover-btn { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #e0e0e0; background: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: background 0.2s, border-color 0.2s; }
+    .cover-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .cover-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+    /* DETAILS STRIP */
+    .details-strip { padding: 0 var(--side) 72px; display: flex; gap: 80px; opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards; }
+    .detail-item label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+    .detail-item span { font-size: 15px; font-weight: 400; color: var(--black); }
+
+    /* TABLE OF CONTENTS */
+    .toc { padding: 56px var(--side); background: var(--light-bg); margin-bottom: 80px; opacity: 0; animation: fadeUp 0.6s ease 0.35s forwards; }
+    .toc-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 32px; }
+    .toc-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .toc-phase h3 { font-family: var(--font-heading); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .toc-phase ul { list-style: none; }
+    .toc-phase ul li { font-size: 14px; font-weight: 400; color: var(--grey-text); padding: 5px 0; border-bottom: 1px solid #e8e8e8; }
+    .toc-phase ul li:last-child { border-bottom: none; }
+
+    /* SECTION RULE */
+    .section-rule { border: none; border-top: 1px solid #ebebeb; margin: 0 var(--side) 72px; }
+
+    /* CASE SECTION */
+    .case-section { padding: 0 var(--side) 72px; }
+    .phase-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .case-section h2 { font-family: var(--font-heading); font-size: 30px; font-weight: 600; color: var(--black); margin-bottom: 24px; line-height: 1.1; }
+    .case-section p { font-size: 16px; font-weight: 300; color: var(--grey-text); line-height: 1.85; max-width: 720px; margin-bottom: 20px; }
+    .case-section p:last-child { margin-bottom: 0; }
+
+    /* PERSONA CARD */
+    .persona-card { background: var(--light-bg); border-radius: 12px; padding: 36px 40px; margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; }
+    .persona-card h4 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 8px; grid-column: 1 / -1; }
+    .persona-field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; }
+    .persona-field span { font-size: 15px; font-weight: 400; color: var(--black); line-height: 1.6; display: block; }
+
+    /* QUOTE CARDS */
+    .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .quote-card { background: var(--light-bg); border-radius: 10px; padding: 28px 32px; border-left: 3px solid var(--accent); }
+    .quote-card p { font-size: 15px; font-weight: 400; color: #333; line-height: 1.7; font-style: italic; margin: 0; max-width: none; }
+
+    /* PAIN POINTS / GENERIC GRID */
+    .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .pain-card { background: var(--light-bg); border-radius: 10px; padding: 28px 32px; }
+    .pain-card .num { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: #e8e8e8; margin-bottom: 10px; }
+    .pain-card h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 10px; }
+    .pain-card p { font-size: 14px; font-weight: 300; color: var(--grey-text); line-height: 1.7; margin: 0; max-width: none; }
+
+    /* WORKAROUNDS TABLE */
+    .workaround-table { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 14px; }
+    .workaround-table th { text-align: left; font-weight: 500; font-size: 13px; color: #999; padding: 12px 16px; border-bottom: 2px solid #ebebeb; letter-spacing: 0.03em; }
+    .workaround-table th:first-child { padding-left: 0; }
+    .workaround-table td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; color: var(--grey-text); font-weight: 300; vertical-align: top; }
+    .workaround-table td:first-child { padding-left: 0; font-weight: 500; color: var(--black); }
+    .workaround-table tr:last-child td { border-bottom: none; }
+
+    /* COMPETITOR TABLE */
+    .competitor-table { width: 100%; border-collapse: collapse; margin-top: 36px; font-size: 14px; }
+    .competitor-table th { text-align: left; font-weight: 500; font-size: 13px; color: #999; padding: 12px 16px; border-bottom: 2px solid #ebebeb; letter-spacing: 0.03em; }
+    .competitor-table th:first-child { padding-left: 0; }
+    .competitor-table th.weekli-col { color: var(--accent); }
+    .competitor-table td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; color: var(--grey-text); font-weight: 300; vertical-align: top; }
+    .competitor-table td:first-child { padding-left: 0; font-weight: 500; color: var(--black); }
+    .competitor-table tr:last-child td { border-bottom: none; }
+    .tag-bad { color: #c0392b; }
+    .tag-good { color: #27ae60; }
+    .tag-us { color: var(--accent); font-weight: 600; }
+
+    /* INSIGHT CALLOUT */
+    .insight-callout { background: #edf7f1; border-radius: 10px; padding: 28px 32px; margin-top: 28px; border-left: 3px solid var(--accent); }
+    .insight-callout p { font-size: 15px; font-weight: 400; color: #2D5C3A; line-height: 1.75; margin: 0; max-width: none; }
+    .insight-callout strong { font-weight: 600; }
+
+    /* FEATURE CARDS */
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .feature-card { background: var(--light-bg); border-radius: 10px; padding: 32px 28px; }
+    .feature-num { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: #e8e8e8; margin-bottom: 10px; }
+    .feature-card h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 12px; }
+    .feature-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .feature-card ul li { font-size: 14px; font-weight: 300; color: var(--grey-text); line-height: 1.6; padding-left: 14px; position: relative; }
+    .feature-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 400; }
+
+    /* BOTTOM SHEET FLOW */
+    .bottom-sheet-flow { background: var(--light-bg); border-radius: 10px; padding: 32px 36px; margin-top: 36px; }
+    .bottom-sheet-flow h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 20px; }
+    .bs-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .bs-option { background: #fff; border-radius: 8px; padding: 20px 18px; border: 1px solid #e8e8e8; }
+    .bs-option .bs-label { font-family: var(--font-heading); font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+    .bs-option p { font-size: 13px; font-weight: 300; color: var(--grey-text); line-height: 1.6; margin: 0; }
+
+    /* SCREEN LIST */
+    .screen-list { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 14px; }
+    .screen-list th { text-align: left; font-weight: 500; font-size: 13px; color: #999; padding: 12px 16px; border-bottom: 2px solid #ebebeb; letter-spacing: 0.03em; }
+    .screen-list th:first-child { padding-left: 0; }
+    .screen-list td { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; color: var(--grey-text); font-weight: 300; vertical-align: top; }
+    .screen-list td:first-child { padding-left: 0; font-weight: 500; color: var(--black); }
+    .screen-list td:nth-child(2) { color: var(--accent); font-size: 13px; font-weight: 400; }
+    .screen-list tr:last-child td { border-bottom: none; }
+
+    /* USER FLOWS */
+    .flow-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .flow-item { display: flex; align-items: flex-start; gap: 20px; padding: 24px 28px; background: var(--light-bg); border-radius: 10px; }
+    .flow-num { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: #e0e0e0; line-height: 1; min-width: 36px; }
+    .flow-content h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+    .flow-content p { font-size: 14px; font-weight: 300; color: var(--grey-text); line-height: 1.7; margin: 0; max-width: none; }
+
+    /* DESIGN PRINCIPLES */
+    .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .principle-card { background: var(--light-bg); border-radius: 10px; padding: 28px 24px; }
+    .principle-card h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+    .principle-card p { font-size: 14px; font-weight: 300; color: var(--grey-text); line-height: 1.7; margin: 0; }
+
+    /* SCREEN GALLERY */
+    .screen-gallery { padding: 0 var(--side) 72px; }
+    .screen-gallery h2 { font-family: var(--font-heading); font-size: 30px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+    .screen-gallery .phase-label { margin-bottom: 10px; }
+    .screen-gallery p { font-size: 16px; font-weight: 300; color: var(--grey-text); line-height: 1.85; max-width: 720px; margin-bottom: 36px; }
+
+    /* CAROUSEL */
+    .carousel-wrapper { display: flex; align-items: center; gap: 16px; }
+    .carousel-track-container { flex: 1; overflow: hidden; }
+    .carousel-track { display: flex; gap: 16px; transition: transform 0.4s ease; }
+    .carousel-track img { flex: 0 0 calc((100% - 32px) / 3); width: calc((100% - 32px) / 3); border-radius: 10px; display: block; background: #f0f0f0; }
+    .carousel-btn { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #e0e0e0; background: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: background 0.2s, border-color 0.2s; }
+    .carousel-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+    /* OUT OF SCOPE */
+    .oos-list { margin-top: 28px; display: flex; flex-direction: column; gap: 0; border: 1px solid #ebebeb; border-radius: 10px; overflow: hidden; }
+    .oos-item { display: flex; align-items: center; gap: 16px; padding: 16px 24px; border-bottom: 1px solid #f0f0f0; font-size: 14px; font-weight: 300; color: var(--grey-text); }
+    .oos-item:last-child { border-bottom: none; }
+    .oos-item::before { content: '✕'; color: #ccc; font-size: 12px; flex-shrink: 0; }
+
+    /* DESIGN SYSTEM */
+    .ds-subsection { margin-top: 40px; }
+    .ds-subsection h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--black); margin-bottom: 16px; }
+    .ds-palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .ds-swatch { display: flex; align-items: center; gap: 14px; }
+    .ds-swatch-color { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; }
+    .ds-swatch-info { display: flex; flex-direction: column; gap: 3px; }
+    .ds-swatch-info strong { font-size: 13px; font-weight: 600; color: var(--black); }
+    .ds-swatch-info span { font-size: 12px; font-weight: 300; color: var(--grey-text); }
+    .ds-font-name { font-family: var(--font-heading); font-size: 36px; font-weight: 600; color: var(--black); margin-bottom: 16px; }
+    .ds-type-scale { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
+    .ds-type-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #f7f7f7; border-radius: 8px; }
+    .ds-type-label { font-size: 14px; font-weight: 500; color: var(--black); }
+    .ds-type-spec { font-size: 13px; font-weight: 300; color: var(--grey-text); }
+
+    /* ACCESSIBILITY */
+    .accessibility-list { display: flex; flex-direction: column; gap: 32px; margin-top: 24px; }
+    .accessibility-item h4 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--black); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .accessibility-item h4::before { content: '•'; color: var(--accent); font-size: 22px; line-height: 1; }
+    .accessibility-item p { font-size: 16px; font-weight: 300; color: var(--grey-text); line-height: 1.85; max-width: 620px; margin: 0; }
+
+    /* METRICS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .metric-card { background: var(--light-bg); border-radius: 10px; padding: 28px 24px; text-align: center; }
+    .metric-value { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .metric-label { font-size: 13px; font-weight: 400; color: var(--grey-text); line-height: 1.5; }
+
+    /* TAKEAWAYS */
+    .takeaways-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .takeaway-card { padding: 32px; border: 1px solid #ebebeb; border-radius: 10px; }
+    .takeaway-card h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 14px; }
+    .takeaway-card p { font-size: 15px; font-weight: 300; color: var(--grey-text); line-height: 1.8; margin: 0; max-width: none; }
+
+    /* FOOTER */
+    footer { padding: 28px var(--side); border-top: 1px solid #ebebeb; display: flex; justify-content: space-between; align-items: center; }
+    footer span { font-size: 13px; color: #bbb; font-weight: 300; }
+
+    /* BACK TO TOP */
+    #back-to-top { position: fixed; bottom: 36px; right: 36px; width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid #e0e0e0; background: #fff; color: #333; font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.3s, background 0.2s, border-color 0.2s; z-index: 999; }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      :root { --side: 28px; }
+      .toc-phases { grid-template-columns: 1fr 1fr; }
+      .quote-grid, .pain-grid, .takeaways-grid, .feature-grid { grid-template-columns: 1fr; }
+      .metrics-grid, .principles-grid, .bs-options { grid-template-columns: 1fr; }
+      .ds-palette { grid-template-columns: 1fr 1fr; }
+      .persona-card { grid-template-columns: 1fr; }
+      .details-strip { flex-wrap: wrap; gap: 32px; }
+      footer { flex-direction: column; gap: 6px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-name">Lisha Thomas</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- BACK -->
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to work
+  </a>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <h1>Weekli</h1>
+    <div class="meta">Mobile App &nbsp;·&nbsp; UX / UI Design &nbsp;·&nbsp; iOS</div>
+    <p class="overview">Plan your week, one meal at a time. Weekli is a focused meal planning app that lets users build a personal recipe library and plan every Breakfast, Lunch, and Dinner for the week — fast, simple, and without the noise.</p>
+  </div>
+
+  <!-- COVER -->
+  <div class="cover-image">
+    <div class="cover-placeholder">
+      <svg width="72" height="72" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 70 Q30 105 70 105 Q110 105 110 70" fill="#a8cdb0"/>
+        <ellipse cx="70" cy="70" rx="40" ry="10" fill="#bfddc6"/>
+        <ellipse cx="70" cy="67" rx="28" ry="8" fill="#8ebe98"/>
+        <rect x="18" y="48" width="4" height="44" rx="2" fill="#7db387"/>
+        <rect x="12" y="48" width="4" height="22" rx="2" fill="#7db387"/>
+        <rect x="24" y="48" width="4" height="22" rx="2" fill="#7db387"/>
+        <rect x="12" y="70" width="16" height="3" rx="1.5" fill="#7db387"/>
+        <path d="M58 52 C56 45 60 38 58 32" stroke="#bfddc6" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M70 48 C68 41 72 34 70 28" stroke="#bfddc6" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M82 52 C80 45 84 38 82 32" stroke="#bfddc6" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>Screens coming soon</span>
+    </div>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details-strip">
+    <div class="detail-item"><label>Role</label><span>UX / UI Designer</span></div>
+    <div class="detail-item"><label>Platform</label><span>iOS · iPhone</span></div>
+    <div class="detail-item"><label>Industry</label><span>Meal Planning</span></div>
+    <div class="detail-item"><label>Tools</label><span>Figma</span></div>
+    <div class="detail-item"><label>Status</label><span>Design Phase</span></div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-label">Case Study Overview</div>
+    <div class="toc-phases">
+      <div class="toc-phase">
+        <h3>Discover</h3>
+        <ul>
+          <li>The problem</li>
+          <li>Target users</li>
+          <li>User persona</li>
+          <li>Current workarounds</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Define</h3>
+        <ul>
+          <li>Problem statement</li>
+          <li>Competitor analysis</li>
+          <li>What Weekli solves</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Develop</h3>
+        <ul>
+          <li>Core features</li>
+          <li>App screens</li>
+          <li>User flows</li>
+          <li>Design principles</li>
+          <li>Design system</li>
+          <li>Accessibility</li>
+        </ul>
+      </div>
+      <div class="toc-phase">
+        <h3>Deliver</h3>
+        <ul>
+          <li>High fidelity prototype</li>
+          <li>Out of scope</li>
+          <li>Success metrics</li>
+          <li>Takeaways</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DISCOVER ── -->
+  <div class="case-section">
+    <div class="phase-label">Discover</div>
+    <h2>The daily meal decision problem</h2>
+    <p>Most people struggle with deciding what to eat every day. The questions "what's for breakfast?" and "what should I cook for dinner?" repeat every single day — causing decision fatigue, wasted time, and unhealthy last-minute choices.</p>
+    <p>The problem isn't a lack of recipes. It's the absence of a simple system to plan ahead — one built around your own meals, not a stranger's recipe database.</p>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Target users</h2>
+    <p>Weekli is built for anyone who regularly decides what to cook — and wants to do it with less effort and more intention:</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <h4>Homemakers</h4>
+        <p>Managing weekly family meals — often the sole person responsible for planning what the household eats every day.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <h4>Couples</h4>
+        <p>Planning meals together and wanting a shared, at-a-glance view of the week so neither person is asking "what's for dinner?" every night.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <h4>Individuals</h4>
+        <p>Living alone and wanting to eat intentionally — reusing meals they enjoy rather than defaulting to takeout when decision fatigue hits.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">04</div>
+        <h4>Busy professionals</h4>
+        <p>Planning the week ahead on Sunday so that food decisions are already made and don't compete with work-week mental bandwidth.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>User persona</h2>
+    <p>I designed Weekli from a personal pain point — as a target user myself — then validated it through research with others who shared the same experience.</p>
+    <div class="persona-card">
+      <h4>Primary Persona</h4>
+      <div class="persona-field"><label>Name</label><span>Kiara, 30</span></div>
+      <div class="persona-field"><label>Location</label><span>Dubai, UAE</span></div>
+      <div class="persona-field"><label>Situation</label><span>Married, plans family meals every weekend</span></div>
+      <div class="persona-field"><label>Current tool</label><span>Writes meals for the week on the fridge. Keeps the shopping list separately on Google Keep — the two are never in one place.</span></div>
+      <div class="persona-field"><label>Pain point</label><span>Meals are on the fridge, shopping list is on the phone — when she's at the supermarket she has to cross-reference both. No single place to plan and manage it all.</span></div>
+      <div class="persona-field"><label>Goal</label><span>Plan all meals for the week in one place, using her own recipes — fast.</span></div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Current workarounds &amp; their gaps</h2>
+    <p>People already try to solve this problem — but none of the tools available are built for it:</p>
+    <table class="workaround-table">
+      <thead>
+        <tr><th>Workaround</th><th>Gap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Keep / Notes app</td><td>No structure, no meal categories, no weekly view — just a list of text</td></tr>
+        <tr><td>Paper and pen</td><td>Not always accessible, easy to lose, and no reusable recipe library</td></tr>
+        <tr><td>Memory</td><td>Inconsistent — leads to repetitive meals or the same decision fatigue every evening</td></tr>
+        <tr><td>Meal Planner</td><td>The closest inspiration for Weekli — strong weekly planning and a clean interface, but no personal recipe library or meal type pinning</td></tr>
+        <tr><td>Mealime</td><td>Built around a recipe database, not personal recipes — forces users into its content</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEFINE ── -->
+  <div class="case-section">
+    <div class="phase-label">Define</div>
+    <h2>Problem statement</h2>
+    <p>People don't need more recipes — they already know what they like to cook. What they need is a simple, structured way to plan which meals they'll make each day of the week, using the meals they already know and enjoy.</p>
+    <p>Weekli was designed around a single idea: your recipes, organised by meal type, mapped to your week. No recipe database. No nutrition tracking. Just a calm, focused planning tool that helps you decide ahead of time — so you never face the question "what's for dinner?" unprepared again.</p>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Competitor analysis</h2>
+    <p>I reviewed the closest alternatives — meal planners and list apps people currently use. The gap Weekli fills (a personal recipe library with meal type categorisation inside a weekly planner) doesn't exist in any single tool today.</p>
+    <table class="competitor-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="weekli-col">Weekli</th>
+          <th>Meal Planner</th>
+          <th>Mealime</th>
+          <th>Google Keep</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Weekly meal planner</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+        </tr>
+        <tr>
+          <td>Simple minimal UI</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+        </tr>
+        <tr>
+          <td>Meal type categorisation</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+        </tr>
+        <tr>
+          <td>Personal recipe library</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+          <td><span class="tag-bad">❌</span></td>
+        </tr>
+        <tr>
+          <td>Meal type pinning</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+          <td><span class="tag-bad">❌</span></td>
+        </tr>
+        <tr>
+          <td>Cross meal-type tagging</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+          <td><span class="tag-bad">❌</span></td>
+        </tr>
+        <tr>
+          <td>No recipe database required</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+          <td><span class="tag-good">✅</span></td>
+        </tr>
+        <tr>
+          <td>Gender neutral design</td>
+          <td><span class="tag-us">✅</span></td>
+          <td><span class="tag-bad">❌</span></td>
+          <td><span class="tag-good">✅</span></td>
+          <td><span class="tag-good">✅</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>What Weekli is designed around</h2>
+    <p>Weekli is designed around one goal — making weekly meal planning as effortless as possible. Every feature is shaped by the habits and needs identified in research, with a focus on simplicity, personal ownership of recipes, and a calm, inclusive experience.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="num">01</div>
+        <h4>Your recipes, your library</h4>
+        <p>No built-in recipe database to wade through. Users build a library of the meals they actually cook — and it grows more useful every week they use it.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">02</div>
+        <h4>Categorised by meal type</h4>
+        <p>When planning Breakfast, only Breakfast recipes appear. Each slot surfaces exactly what's relevant — no scrolling, no irrelevant suggestions.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">03</div>
+        <h4>A week at a glance</h4>
+        <p>Seven days, three meals per day — all visible and editable in one view. Plan on Sunday, and the week's decisions are already made.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">04</div>
+        <h4>Pinned meal types</h4>
+        <p>Users can pin a meal type — Breakfast, Lunch, or Dinner — to their favourite recipes. Pinned recipes surface at the top when planning that slot, making repeat choices even faster.</p>
+      </div>
+      <div class="pain-card">
+        <div class="num">05</div>
+        <h4>Auto weekly reset</h4>
+        <p>Every Monday the planner resets to a clean empty week. No manual clearing — just open the app and start planning again.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DEVELOP ── -->
+  <div class="case-section">
+    <div class="phase-label">Develop</div>
+    <h2>Core features</h2>
+    <p>Weekli V1.0 is built on two features. Everything else is out of scope until these are validated.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <h4>Recipe Library</h4>
+        <ul>
+          <li>Users build a personal collection of their own recipes</li>
+          <li>Organised into three categories: Breakfast, Lunch, Dinner</li>
+          <li>Each recipe can be tagged to one or more meal types — Breakfast, Lunch, or Dinner</li>
+          <li>Users can also pin a recipe to a meal type, surfacing it at the top of that list for faster planning</li>
+          <li>Add, delete, and categorise recipes at any time</li>
+          <li>Accessible via the Meals tab in the bottom navigation</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <h4>Meal Planner</h4>
+        <ul>
+          <li>7-day scrollable calendar with Breakfast, Lunch, Dinner slots</li>
+          <li>Tap "+ Add" on any slot to assign a meal</li>
+          <li>Only relevant recipes shown per slot — Breakfast shows Breakfast recipes</li>
+          <li>Auto-resets to a new empty week every Monday</li>
+          <li>Home screen shows the full week plan at a glance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Add meal flow</h2>
+    <p>The add meal experience differs depending on whether the user is new or returning — keeping the first-time experience as simple as possible, while giving returning users full control of their growing library.</p>
+
+    <div class="bottom-sheet-flow" style="margin-bottom: 24px;">
+      <h4>First time user</h4>
+      <div class="bs-options" style="grid-template-columns: 1fr;">
+        <div class="bs-option">
+          <div class="bs-label">Tap Add → Type → Done</div>
+          <p>User taps the Add CTA on any meal slot. A bottom sheet slides up with a simple text field — user types the meal name and taps Add. The meal is instantly added to that slot on the home screen. No library, no options, no friction.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-sheet-flow">
+      <h4>Returning user — 3-option bottom sheet</h4>
+      <p style="font-size:14px; font-weight:300; color:var(--grey-text); line-height:1.7; margin-bottom:20px;">Once the user has built up a recipe library, tapping "+ Add" opens a bottom sheet with three options — giving them control over planning, organising, and maintaining their library.</p>
+      <div class="bs-options">
+        <div class="bs-option">
+          <div class="bs-label">Add</div>
+          <p>Opens the recipe list filtered to the relevant meal type. User selects a saved recipe or types a new one to add to both the library and the meal slot.</p>
+        </div>
+        <div class="bs-option">
+          <div class="bs-label">Clean</div>
+          <p>Opens the recipe list with a delete option. User removes recipes they no longer want from their library.</p>
+        </div>
+        <div class="bs-option">
+          <div class="bs-label">See recipes</div>
+          <p>Opens the full recipe library. User can view all recipes, reassign categories, and tag or pin a recipe to a meal type.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>App screens</h2>
+    <table class="screen-list">
+      <thead>
+        <tr><th>Screen</th><th>Section</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Onboarding</td><td>—</td><td>Welcome new users and introduce the app's single goal</td></tr>
+        <tr><td>Home — Empty State</td><td>Home</td><td>First-time user — no meals planned yet, prompt to get started</td></tr>
+        <tr><td>Home — Active State</td><td>Home</td><td>Weekly overview — all 7 days with meals filled in</td></tr>
+        <tr><td>Meal Planner — Empty</td><td>Home</td><td>Week view with no meals planned yet</td></tr>
+        <tr><td>Meal Planner — Active</td><td>Home</td><td>Week view with meals assigned to slots</td></tr>
+        <tr><td>Bottom Sheet</td><td>Home</td><td>Add / Clean / See recipes — triggered by tapping any "+ Add" slot</td></tr>
+        <tr><td>Recipe List</td><td>Home</td><td>Filtered recipe list per meal type — for selecting or adding a recipe</td></tr>
+        <tr><td>Recipe Library</td><td>Meals</td><td>Full recipe collection — add, delete, and categorise recipes</td></tr>
+        <tr><td>Settings</td><td>Settings</td><td>App preferences and profile</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Key user flows</h2>
+
+    <p style="font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; margin-bottom:16px;">Flow 1 — First time user</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Onboarding</h4>
+          <p>Opens app → Sees onboarding screen → Taps "Get Started" → Lands on Meal Planner Empty State</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Add first meal</h4>
+          <p>Taps "+ Add" on Monday Breakfast → Bottom sheet opens → Taps "Add" → Breakfast Recipe List opens (empty) → Types "Avocado toast" → Recipe saved to library and added to Monday Breakfast</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Plan the week</h4>
+          <p>Repeats for Lunch and Dinner slots → Continues across the week → Home Screen shows completed week plan</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; margin-bottom:16px; margin-top:40px;">Flow 2 — Returning user (new week)</p>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Monday reset</h4>
+          <p>Opens app on Monday → Sees a new empty week — last week's plan cleared automatically</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Bottom sheet with 3 options</h4>
+          <p>Taps "+ Add" on any meal slot → Bottom sheet slides up with 3 options: Add, Clean, See recipes</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Select from saved recipes</h4>
+          <p>Taps "Add" → Recipe list opens, filtered to the relevant meal type → Selects a saved recipe → Meal added to the slot instantly</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Plan the week</h4>
+          <p>Repeats for remaining slots → Planning is faster every week as the recipe library grows</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Design principles</h2>
+    <p>Five principles guided every design decision — from the information architecture to the smallest interaction:</p>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <h4>Focused</h4>
+        <p>One job, done well — plan your week with your own recipes. Nothing is added that doesn't serve that goal.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Personal</h4>
+        <p>Your recipes, your meals, your week. The app has no opinion about what you should eat — it just helps you plan it.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Simple</h4>
+        <p>Every core action takes 3 taps or fewer. If it takes more, the design needs to change — not the user.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Calm</h4>
+        <p>No overwhelming features, no cluttered screens, no notifications demanding attention. Meal planning should feel easy.</p>
+      </div>
+      <div class="principle-card">
+        <h4>Inclusive</h4>
+        <p>Clean, minimal design that works for everyone — regardless of gender, background, or how they approach cooking.</p>
+      </div>
+      <div class="principle-card">
+        <h4>3-tap rule</h4>
+        <p>Adding a meal, cleaning the library, categorising a recipe — any core task must be reachable within 3 taps from the home screen.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>The design system</h2>
+    <p>The visual identity is grounded and natural — fresh greens to connect to food, a deep near-black for text, and an off-white background that keeps the focus on the content. Deliberately gender-neutral: no pinks, no florals, no stock photography of salads.</p>
+
+    <div class="ds-subsection">
+      <h3>Colour palette</h3>
+      <div class="ds-palette">
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#5AA474;"></div>
+          <div class="ds-swatch-info"><strong>Green · #5AA474</strong><span>Accent · CTAs &amp; active states</span></div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#1A2E22;"></div>
+          <div class="ds-swatch-info"><strong>Deep Green · #1A2E22</strong><span>Primary text</span></div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#F6F9F6; border:1px solid #e0e0e0;"></div>
+          <div class="ds-swatch-info"><strong>Off-white · #F6F9F6</strong><span>Background</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Typography</h3>
+      <p class="ds-font-name">DM Sans</p>
+      <div class="ds-type-scale">
+        <div class="ds-type-row"><span class="ds-type-label">Heading 1</span><span class="ds-type-spec">Semibold · 36px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 2</span><span class="ds-type-spec">Semibold · 24px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Heading 3</span><span class="ds-type-spec">Medium · 20px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Body</span><span class="ds-type-spec">Regular · 16px</span></div>
+        <div class="ds-type-row"><span class="ds-type-label">Caption</span><span class="ds-type-spec">Light · 13px</span></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Iconography</h3>
+      <p>Icons follow a rounded, consistent style — friendly without being playful. All icons are paired with labels where space allows, and meet a minimum 48×48px touch target across all screens.</p>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Components</h3>
+      <p>Core components include the day column in the weekly planner, the meal slot card, the bottom sheet, the recipe list row, and the floating add button. Each is designed to be immediately scannable and thumb-friendly in a one-handed hold.</p>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Accessibility standards</h2>
+    <div class="accessibility-list">
+      <div class="accessibility-item">
+        <h4>Touch targets</h4>
+        <p>All interactive elements are a minimum of 48×48px. Meal slot cards and recipe list rows span the full screen width for easy one-thumb tapping.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Color contrast</h4>
+        <p>All text and icon pairings meet WCAG AA contrast standards. Green is used only for interactive and active elements — never as the sole indicator of meaning.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Color-blind safe</h4>
+        <p>Planned vs. empty meal slots are differentiated by both colour and icon — the distinction is never colour alone.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Text sizing</h4>
+        <p>Body text is 16px minimum. Labels and captions are 13px bold or above. Line spacing is set to 150% for comfortable reading in a handheld context.</p>
+      </div>
+      <div class="accessibility-item">
+        <h4>Font selection</h4>
+        <p>DM Sans was chosen for its clean legibility at all sizes — particularly at the small sizes used in the 7-day planner grid.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <!-- ── DELIVER ── -->
+  <div class="screen-gallery">
+    <div class="phase-label">Deliver</div>
+    <h2>High fidelity prototype</h2>
+    <p>The prototype covers the complete V1.0 flow — onboarding, building the recipe library, planning the full week, and the weekly reset. Screens are in progress and will be added here shortly.</p>
+    <p style="font-size:13px; font-weight:500; color:#aaa; letter-spacing:0.05em;">Prototype screens coming soon</p>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Out of scope — V1.0</h2>
+    <p>Weekli V1.0 is intentionally focused. The following features are not included in the initial release — and that's a deliberate design decision, not an oversight:</p>
+    <div class="oos-list">
+      <div class="oos-item">Grocery list generation</div>
+      <div class="oos-item">Budget tracking and shopping mode</div>
+      <div class="oos-item">Weekly reminders and push notifications</div>
+      <div class="oos-item">Recipe database or recipe suggestions</div>
+      <div class="oos-item">Calorie or nutrition tracking</div>
+      <div class="oos-item">Social sharing of meal plans</div>
+      <div class="oos-item">AI generated meal suggestions</div>
+      <div class="oos-item">Multi-user or family sharing</div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Success metrics</h2>
+    <p>These are the targets that define a successful V1.0 experience:</p>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">&lt;5 min</div>
+        <div class="metric-label">Time to plan a full week of meals</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3 taps</div>
+        <div class="metric-label">Maximum taps to complete any core task</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">70%</div>
+        <div class="metric-label">Users who plan a new week the following Monday</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule" />
+
+  <div class="case-section">
+    <h2>Takeaways</h2>
+    <p>Weekli reinforced a lesson that's easy to intellectualise but hard to practice: the discipline of saying no. The instinct was to add grocery lists, budget tracking, and reminders. The decision was to ship one thing first — and ship it well.</p>
+    <div class="takeaways-grid">
+      <div class="takeaway-card">
+        <h4>Scope is a design decision</h4>
+        <p>Choosing V1.0 as recipe library + meal planner only wasn't a limitation — it was a strategy. A focused product that earns trust is the foundation for everything that comes after.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>Design for yourself, validate with others</h4>
+        <p>Starting from a personal pain point gave the problem immediate clarity and conviction. The test was whether others shared it — and research confirmed they do.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>The bottom sheet unlocked simplicity</h4>
+        <p>Putting Add, Clean, and See recipes behind a single "+ Add" tap kept the planner view completely uncluttered — all the functionality is there, none of it is in the way.</p>
+      </div>
+      <div class="takeaway-card">
+        <h4>What next</h4>
+        <p>Conduct usability testing on the V1.0 prototype. Validate the recipe library flow and the weekly planning experience before designing grocery list and budget features for V2.0.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Lisha Thomas &copy; 2026</span>
+    <span>UX Designer, Dubai</span>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to top">&#8593;</button>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      });
+      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
+  </script>
+
+</body>
+</html>
